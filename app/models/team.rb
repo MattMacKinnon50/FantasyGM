@@ -1,0 +1,23 @@
+class Team < ApplicationRecord
+  validates :abbr, presence: :true
+  validates :city, presence: :true
+  validates :name, presence: :true
+  validates :conference, presence: :true
+  validates :division, presence: :true
+  validates :head_coach, presence: :true
+  validates :offensive_coordinator, presence: :true
+  validates :defensive_coordinator, presence: :true
+  validates :special_teams_coach, presence: :true
+  validates :primary_color, presence: :true
+  validates :secondary_color, presence: :true
+  validates :tertiary_color, presence: :true
+  validates :quaternary_color, presence: :true
+  validates :wikipedia_logo_url, presence: :true
+  validates :wikipedia_wordmark_url, presence: :true
+  validates :stadium_name, presence: :true
+  validates :stadium_city, presence: :true
+  validates :stadium_state, presence: :true
+  validates :stadium_country, presence: :true
+  validates :stadium_capacity, presence: :true
+  validates :stadium_playing_surface, presence: :true
+end
