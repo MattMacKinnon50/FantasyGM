@@ -10,8 +10,6 @@ class Team < ApplicationRecord
   validates :special_teams_coach, presence: :true
   validates :primary_color, presence: :true
   validates :secondary_color, presence: :true
-  validates :tertiary_color, presence: :true
-  validates :quaternary_color, presence: :true
   validates :wikipedia_logo_url, presence: :true
   validates :wikipedia_wordmark_url, presence: :true
   validates :stadium_name, presence: :true

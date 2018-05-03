@@ -12,8 +12,8 @@ class CreateTeam < ActiveRecord::Migration[5.2]
       t.string :special_teams_coach, null: :false
       t.string :primary_color, null: :false
       t.string :secondary_color, null: :false
-      t.string :tertiary_color, null: :false
-      t.string :quaternary_color, null: :false
+      t.string :tertiary_color
+      t.string :quaternary_color
       t.string :wikipedia_logo_url, null: :false
       t.string :wikipedia_wordmark_url, null: :false
       t.string :stadium_name, null: :false
