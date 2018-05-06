@@ -57,8 +57,9 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
-gem "dotenv-rails"
+gem "dotenv-rails", groups: [:development, :test]
 gem "httpclient"
+gem "activesupport"
 
 group :test do
   gem 'coveralls', require: false
