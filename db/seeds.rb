@@ -48,6 +48,13 @@ abbr_array.each do |org|
   file = File.read("./app/builders/rosters/#{org[0]}.json")
   data = JSON.parse(file)
   data.each do |player|
+    stats17 = nil
+    statsppr17 = nil
+    if player["PlayerSeason"] != nil
+      stats17 = player["PlayerSeason"]["FantasyPoints"]
+      statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
+    end
+
     Player.create!(
       team: org[1],
       nfl_team: player["Team"],
@@ -78,8 +85,8 @@ abbr_array.each do |org|
       draftkings_player_id: player["DraftKingsPlayerID"],
       yahoo_player_id: player["YahooPlayerID"],
       fantasydraft_player_id: player["FantasyDraftPlayerID"],
-      fantasy_stats_2017: player["PlayerSeason"]["FantasyPoints"],
-      fantasy_stats_ppr_2017: player["PlayerSeason"]["FantasyPointsPPR"]
+      fantasy_stats_2017: stats17,
+      fantasy_stats_ppr_2017: statsppr17
     )
   end
 end
