@@ -3,10 +3,7 @@ require 'pry'
 require 'json'
 # require 'dotenv-rails'
 
-teams = Team.all
-
-teams.each do |team|
-  uri = URI("https://api.fantasydata.net/v3/nfl/stats/JSON/Players/#{team.abbr}")
+  uri = URI("https://api.fantasydata.net/v3/nfl/stats/JSON/FreeAgents")
 
   request = Net::HTTP::Get.new(uri.request_uri)
   # Request headers
@@ -19,5 +16,4 @@ teams.each do |team|
 
   data = JSON.pretty_generate(JSON[response.body])
 
-  File.open("./app/builders/rosters/#{team.abbr}.json", 'w') { |file| file.write(data) }
-end
+  File.open("./app/builders/rosters/FA.json", 'w') { |file| file.write(data) }
