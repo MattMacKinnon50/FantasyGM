@@ -1,11 +1,11 @@
 class CreateRosters < ActiveRecord::Migration[5.2]
   def change
     create_table :players do |t|
-      belongs_to :team
-      t.string :nfl_team, null: false
-      t.string :number,
-      t.string :first_name, null: :false
-      t.string :last_name, null: :false
+      t.belongs_to :team, index: true
+      t.string :nfl_team
+      t.string :number
+      t.string :first_name, null: false
+      t.string :last_name, null: false
       t.string :position
       t.string :height
       t.string :weight

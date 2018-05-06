@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-file = File.read('./team_api.json')
+file = File.read('./app/builders/team_api.json')
 data = JSON.parse(file)
 
 
@@ -34,4 +34,52 @@ data.each do |team|
     stadium_capacity: team["StadiumDetails"]["Capacity"],
     stadium_playing_surface: team["StadiumDetails"]["PlayingSurface"]
   )
+end
+
+fa = Team.create(abbr: "FA", city: "Free", name: "Agents")
+teams = Team.all
+abbr_array = []
+
+teams.each do |team|
+  abbr_array << [team.abbr, team]
+end
+
+abbr_array.each do |org|
+  file = File.read("./app/builders/rosters/#{org[0]}.json")
+  data = JSON.parse(file)
+  data.each do |player|
+    Player.create!(
+      team: org[1],
+      nfl_team: player["Team"],
+      number: player["Number"],
+      first_name: player["FirstName"],
+      last_name: player["LastName"],
+      position: player["Position"],
+      height: player["Height"],
+      weight: player["Weight"],
+      birth_date: player["BirthDate"],
+      college: player["College"],
+      experience: player["Experience"],
+      photo_url: player["PhotoUrl"],
+      bye_week: player["ByeWeek"],
+      college_draft_team: player["CollegeDraftTeam"],
+      college_draft_year: player["CollegeDraftYear"],
+      college_draft_round: player["CollegeDraftRound"],
+      college_draft_pick: player["CollegeDraftPick"],
+      undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
+      fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],
+      sports_radar_player_id: player["SportRadarPlayerID"],
+      rotoworld_player_id: player["RotoworldPlayerID"],
+      rotowire_player_id: player["RotoWirePlayerID"],
+      stats_player_id: player["StatsPlayerID"],
+      sports_direct_player_id: player["SportsDirectPlayerID"],
+      xmlteam_player_id: player["XmlTeamPlayerID"],
+      fanduel_player_id: player["FanDuelPlayerID"],
+      draftkings_player_id: player["DraftKingsPlayerID"],
+      yahoo_player_id: player["YahooPlayerID"],
+      fantasydraft_player_id: player["FantasyDraftPlayerID"],
+      fantasy_stats_2017: player["PlayerSeason"]["FantasyPoints"],
+      fantasy_stats_ppr_2017: player["PlayerSeason"]["FantasyPointsPPR"]
+    )
+  end
 end

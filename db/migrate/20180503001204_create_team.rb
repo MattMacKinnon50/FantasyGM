@@ -1,9 +1,9 @@
 class CreateTeam < ActiveRecord::Migration[5.2]
   def change
     create_table :teams do |t|
-      t.string :abbr, null: :false
-      t.string :city, null: :false
-      t.string :name, null: :false
+      t.string :abbr, null: false
+      t.string :city, null: false
+      t.string :name, null: false
       t.string :conference
       t.string :division
       t.string :head_coach
