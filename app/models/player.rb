@@ -4,4 +4,7 @@ class Player < ApplicationRecord
 
   belongs_to :team
 
+  def name
+    [first_name, last_name].join(' ')
+  end
 end

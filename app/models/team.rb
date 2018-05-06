@@ -4,4 +4,8 @@ class Team < ApplicationRecord
   validates :name, presence: :true
 
   has_many :players
+
+  def full_name
+    [city, name].join(' ')
+  end
 end

@@ -1,0 +1,7 @@
+<h1> <%= @team.full_name %> </h1>
+
+  <ul>
+    <% @players.each do |player| %>
+      <li> <%= player.number %> - <%= player.position %> - <%= player.name %></li>
+    <% end %>
+  </ul>
