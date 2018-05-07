@@ -1,5 +1,7 @@
 <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
 
+  <div id='app' class='react-div'></div>
+
   <ul>
     <% @players.each do |player| %>
       <li> <%= player.number %> - <%= player.position %> - <%= link_to player.name, player %></li>

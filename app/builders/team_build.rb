@@ -16,4 +16,4 @@ end
 
 data = JSON.pretty_generate(JSON[response.body])
 
-File.open('./test_api.json', 'w') { |file| file.write(data) }
+File.open('./team_api.json', 'w') { |file| file.write(data) }
