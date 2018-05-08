@@ -36,6 +36,7 @@ class Roster extends Component {
       players: []
     }
     this.triggerFetch = this.triggerFetch.bind(this)
+    this.setLineup = this.setLineup.bind(this)
   }
 
   componentDidMount() {
@@ -62,16 +63,27 @@ class Roster extends Component {
       this.setState({
         players: response["players"]
       })
+      this.setLineup()
     })
     .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
-
-  render() {
+  setLineup() {
     const positions = ["qb", "rb1", "rb2", "wr1", "wr2", "wr3", "wr4", "te", "teWrRb", "ot1", "ot2", "g1", "g2", "c", "dt1", "dt2", "de", "de", "ilb1", "ilb2", "olb1", "olb2", "cb1", "cb2", "cb3", "fs", "ss", "p", "k"]
+    const players = this.state.players
+    var lineup = {}
+    positions.forEach(function(position) {
+      var starter = null
+      players.forEach(function(player) {
+        if (player["starting"] == position) {
+          starter = player
+          }
+        })
+      lineup[position] = starter
+    })
+      this.setState(lineup)
+  }
+  render() {
 
-    positions.forEach(function(postion)) {
-      var player = 
-    }
     return (
       <h3>Starting Roster:</h3>
 
