@@ -12,7 +12,7 @@ class Roster extends Component {
       wr3: null,
       wr4: null,
       te1: null,
-      te2: null,
+      teWr: null,
       ot1: null,
       ot2: null,
       g1: null,
@@ -29,19 +29,23 @@ class Roster extends Component {
       cb1: null,
       cb2: null,
       cb3: null,
-      teamId: null,
+      ss: null,
+      fs: null,
       players: []
     }
     this.triggerFetch = this.triggerFetch.bind(this)
   }
 
   componentDidMount() {
-    this.setState({teamId: parseInt(this.props.params.id)})
     this.triggerFetch()
   }
 
   triggerFetch() {
-  fetch('/api/v1/players')
+    var teamId = parseInt(this.props.params.id)
+  fetch(`/api/v1/players.json?id=${teamId}`, {
+      credentials: 'same-origin',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', }
+    })
     .then ( response => {
       if ( response.ok ) {
         return response;
@@ -53,21 +57,15 @@ class Roster extends Component {
     })
     .then ( response => response.json() )
     .then ( response => {
-      const newResponse = response["players"]
-      const teamPlayers = newResponse.map((player) => {
-        if (player.team_id === this.state.teamId) {
-          return player
-        }
-      })
-
       this.setState({
-        players: teamPlayers
+        players: response["players"]
       })
     })
     .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
 
   render() {
+    debugger
     return (
       <p> Hello from React.</p>
     )
