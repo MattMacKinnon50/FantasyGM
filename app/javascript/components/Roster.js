@@ -1,43 +1,18 @@
 import React, { Component } from 'react';
+import Slot from './Slot'
 
 class Roster extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qb: null,
-      rb1: null,
-      rb2: null,
-      wr1: null,
-      wr2: null,
-      wr3: null,
-      wr4: null,
-      te1: null,
-      teWrRb: null,
-      ot1: null,
-      ot2: null,
-      g1: null,
-      g2: null,
-      c: null,
-      dt1: null,
-      dt2: null,
-      de1: null,
-      de2: null,
-      ilb1: null,
-      ilb2: null,
-      olb1: null,
-      olb2: null,
-      cb1: null,
-      cb2: null,
-      cb3: null,
-      ss: null,
-      fs: null,
-      p: null,
-      k: null,
-      players: []
+      lineup: {qb: null, rb1: null, rb2: null, wr1: null, wr2: null, wr3: null, wr4: null, te1: null, teWrRb: null, ot1: null, ot2: null, g1: null, g2: null, c: null, dt1: null, dt2: null, de1: null, de2: null, ilb1: null, ilb2: null, olb1: null, olb2: null, cb1: null, cb2: null, cb3: null, ss: null, fs: null, p: null, k: null},
+      players: [],
     }
     this.triggerFetch = this.triggerFetch.bind(this)
     this.setLineup = this.setLineup.bind(this)
+    this.generateSlots = this.generateSlots.bind(this)
   }
+
 
   componentDidMount() {
     this.triggerFetch()
@@ -68,26 +43,69 @@ class Roster extends Component {
     .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
   setLineup() {
-    const positions = ["qb", "rb1", "rb2", "wr1", "wr2", "wr3", "wr4", "te", "teWrRb", "ot1", "ot2", "g1", "g2", "c", "dt1", "dt2", "de", "de", "ilb1", "ilb2", "olb1", "olb2", "cb1", "cb2", "cb3", "fs", "ss", "p", "k"]
     const players = this.state.players
-    var lineup = {}
-    positions.forEach(function(position) {
-      var starter = null
+    let lineup = this.state.lineup
+    for (var key in lineup) {
+      if (!lineup.hasOwnProperty(key)) continue;
+      let starter = null
       players.forEach(function(player) {
-        if (player["starting"] == position) {
+        if (player["starting"] == key) {
           starter = player
           }
         })
-      lineup[position] = starter
-    })
-      this.setState(lineup)
+      lineup[key] = starter
+    }
+    this.setState({ lineup: lineup })
   }
+
+  generateSlots() {
+    const lineup = this.state.lineup
+    const slots = []
+    for (var key in lineup) {
+      if (!lineup.hasOwnProperty(key)) continue;
+      var player = lineup[key]
+      if (player != null) {
+        slots.push(
+            <Slot
+              key={key}
+              slot={key}
+              name={player["name"]}
+              position={player["position"]}
+              number={player["number"]}
+              nflTeam={player["nfl_team"]}
+              firstName={player["first_name"]}
+              lastName={player["last_name"]}
+              byeWeek={player["bye_week"]}
+            />
+          )
+        } else {
+          slots.push(
+              <Slot
+                key={key}
+                slot={key}
+                name={"Empty"}
+                position= {null}
+                number={null}
+                nflTeam={null}
+                firstName={null}
+                lastName={null}
+                byeWeek={null}
+              />
+            )
+        }
+    }
+    debugger
+    return slots
+  }
+
   render() {
-
+    this.generateSlots()
+    debugger
     return (
-      <h3>Starting Roster:</h3>
-
-    )
+      <div id="starters">
+        { slots }
+      </div>
+      )
   }
 }
 
