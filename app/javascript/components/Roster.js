@@ -5,7 +5,7 @@ class Roster extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lineup: {qb: {name: "QB", positions: ["QB"], player: null}, rb1: {name: "RB", positions: ["RB"], player: null}, rb2: {name: "RB", positions: ["RB"], player: null}, wr1: {name: "WR", positions: ["WR"], player: null}, wr2: {name: "WR", positions: ["WR"], player: null}, wr3: {name: "WR", positions: ["WR"], player: null}, wr4: {name: "WR", positions: ["WR"], player: null}, te: {name: "TE", positions: ["TE"], player: null}, teWrRb: {name: "TE / WR / RB", positions: ["TE", "WR", "RB"], player: null}, ot1: {name: "OT", positions: ["OT"], player: null}, ot2: {name: "OT", positions: ["OT"], player: null}, g1: {name: "G", positions: ["G"], player: null}, g2: {name: "G", positions: ["G"], player: null}, c: {name: "C", positions: ["C"], player: null}, dt1: {name: "DT", positions: ["DT"], player: null}, dt2: {name: "DT", positions: ["DT"], player: null}, de1: {name: "DE", positions: ["DE"], player: null}, de2: {name: "DE", positions: ["DE"], player: null}, ilb1: {name: "ILB", positions: ["ILB", "LB"], player: null}, ilb2: {name: "ILB", positions: ["ILB", "LB"], player: null}, olb1: {name: "OLB", positions: ["OLB, LB"], player: null}, olb2: {name: "OLB", positions: ["OLB, LB"], player: null}, cb1: {name: "CB", positions: ["CB"], player: null}, cb2: {name: "CB", positions: ["CB"], player: null}, cb3: {name: "CB", positions: ["CB"], player: null}, ss: {name: "SS", positions: ["SS", "S"], player: null}, fs: {name: "FS", positions: ["FS", "S"], player: null}, p: {name: "P", positions: ["P"], player: null}, k: {name: "K", positions: ["K"], player: null}},
+      lineup: {qb: {name: "QB", positions: ["QB"], player: null}, rb1: {name: "RB", positions: ["RB"], player: null}, rb2: {name: "RB", positions: ["RB"], player: null}, wr1: {name: "WR", positions: ["WR"], player: null}, wr2: {name: "WR", positions: ["WR"], player: null}, wr3: {name: "WR", positions: ["WR"], player: null}, wr4: {name: "WR", positions: ["WR"], player: null}, te: {name: "TE", positions: ["TE"], player: null}, teWrRb: {name: "TE/WR/RB", positions: ["TE", "WR", "RB"], player: null}, ot1: {name: "OT", positions: ["OT"], player: null}, ot2: {name: "OT", positions: ["OT"], player: null}, g1: {name: "G", positions: ["G"], player: null}, g2: {name: "G", positions: ["G"], player: null}, c: {name: "C", positions: ["C"], player: null}, dt1: {name: "DT", positions: ["DT"], player: null}, dt2: {name: "DT", positions: ["DT"], player: null}, de1: {name: "DE", positions: ["DE"], player: null}, de2: {name: "DE", positions: ["DE"], player: null}, ilb1: {name: "ILB", positions: ["ILB", "LB"], player: null}, ilb2: {name: "ILB", positions: ["ILB", "LB"], player: null}, olb1: {name: "OLB", positions: ["OLB, LB"], player: null}, olb2: {name: "OLB", positions: ["OLB, LB"], player: null}, cb1: {name: "CB", positions: ["CB"], player: null}, cb2: {name: "CB", positions: ["CB"], player: null}, cbS: {name: "CB/S", positions: ["CB", "S"], player: null}, ss: {name: "SS", positions: ["SS", "S"], player: null}, fs: {name: "FS", positions: ["FS", "S"], player: null}, p: {name: "P", positions: ["P"], player: null}, k: {name: "K", positions: ["K"], player: null}},
       players: [],
     }
     this.triggerFetch = this.triggerFetch.bind(this)
@@ -93,6 +93,7 @@ class Roster extends Component {
               firstName={player["first_name"]}
               lastName={player["last_name"]}
               byeWeek={player["bye_week"]}
+              starter={true}
             />
           )
         } else {
@@ -101,16 +102,17 @@ class Roster extends Component {
                 key={key}
                 className={"empty-slot"}
                 slot={key}
-                playerName={"Empty"}
+                playerName={null}
+                playerId={null}
                 positionName={lineup[key]["name"]}
                 eligiblePlayers={eligiblePlayers}
-                playerId={null}
                 position= {null}
                 number={null}
                 nflTeam={null}
                 firstName={null}
                 lastName={null}
                 byeWeek={null}
+                starter={true}
               />
             )
         }
@@ -119,16 +121,45 @@ class Roster extends Component {
   }
 
   generateBench() {
+    const allPlayers = this.state.players
+    const slots = []
+    let key = 0
+    allPlayers.forEach((player) => {
+      if (player["starting"] == null) {
+        key += 1
+        slots.push(
+          <Slot
+            key={key}
+            className={"bench-player"}
+            playerName={player["name"]}
+            playerId={player["id"]}
+            position={player["position"]}
+            number={player["number"]}
+            nflTeam={player["nfl_team"]}
+            firstName={player["first_name"]}
+            lastName={player["last_name"]}
+            byeWeek={player["bye_week"]}
+            starter={false}
+          />
+        )
+      }
+    })
+    return slots
 }
 
   render() {
-    let slots = this.generateRosterSlots()
+    let starters = this.generateRosterSlots()
+    let bench = this.generateBench()
     return (
       <div>
         <h3>Starting Roster:</h3>
-        <div id="starters">
-          { slots }
-        </div>
+        <ul id="starters">
+          { starters }
+        </ul>
+        <h3>Practice Squad:</h3>
+        <ul id="bench">
+          { bench }
+        </ul>
       </div>
       )
   }
