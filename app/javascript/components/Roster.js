@@ -12,7 +12,7 @@ class Roster extends Component {
       wr3: null,
       wr4: null,
       te1: null,
-      teWr: null,
+      teWrRb: null,
       ot1: null,
       ot2: null,
       g1: null,
@@ -31,6 +31,8 @@ class Roster extends Component {
       cb3: null,
       ss: null,
       fs: null,
+      p: null,
+      k: null,
       players: []
     }
     this.triggerFetch = this.triggerFetch.bind(this)
@@ -65,9 +67,14 @@ class Roster extends Component {
   }
 
   render() {
-    debugger
+    const positions = ["qb", "rb1", "rb2", "wr1", "wr2", "wr3", "wr4", "te", "teWrRb", "ot1", "ot2", "g1", "g2", "c", "dt1", "dt2", "de", "de", "ilb1", "ilb2", "olb1", "olb2", "cb1", "cb2", "cb3", "fs", "ss", "p", "k"]
+
+    positions.forEach(function(postion)) {
+      var player = 
+    }
     return (
-      <p> Hello from React.</p>
+      <h3>Starting Roster:</h3>
+
     )
   }
 }
