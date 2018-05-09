@@ -7,7 +7,7 @@ const Slot = props => {
   if (props.eligiblePlayers != null) {
     props.eligiblePlayers.forEach ((player) => {
       return (
-        eligiblePlayerList.unshift(<option value={player}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
+        eligiblePlayerList.unshift(<option key={player.id} value={player.id}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
       )
     })
 }
@@ -20,7 +20,7 @@ const Slot = props => {
         <li className= {props.className}>
           <form>
             <label className="roster-label">{props.positionName}:
-              <select defaultValue={props.player} className="roster-select">
+              <select defaultValue={props.playerId} id={props.slot} className="roster-select">
                 {eligiblePlayerList}
               </select>
             </label>

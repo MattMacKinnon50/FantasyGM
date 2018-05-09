@@ -5,9 +5,9 @@ class Roster extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lineup: {qb: {name: "QB", positions: ["QB"], player: null}, rb1: {name: "RB", positions: ["RB"], player: null}, rb2: {name: "RB", positions: ["RB"], player: null}, wr1: {name: "WR", positions: ["WR"], player: null}, wr2: {name: "WR", positions: ["WR"], player: null}, wr3: {name: "WR", positions: ["WR"], player: null}, wr4: {name: "WR", positions: ["WR"], player: null}, te: {name: "TE", positions: ["TE"], player: null}, teWrRb: {name: "TE/WR/RB", positions: ["TE", "WR", "RB"], player: null}, ot1: {name: "OT", positions: ["OT"], player: null}, ot2: {name: "OT", positions: ["OT"], player: null}, g1: {name: "G", positions: ["G"], player: null}, g2: {name: "G", positions: ["G"], player: null}, c: {name: "C", positions: ["C"], player: null}, dt1: {name: "DT", positions: ["DT"], player: null}, dt2: {name: "DT", positions: ["DT"], player: null}, de1: {name: "DE", positions: ["DE"], player: null}, de2: {name: "DE", positions: ["DE"], player: null}, ilb1: {name: "ILB", positions: ["ILB", "LB"], player: null}, ilb2: {name: "ILB", positions: ["ILB", "LB"], player: null}, olb1: {name: "OLB", positions: ["OLB", "LB"], player: null}, olb2: {name: "OLB", positions: ["OLB", "LB"], player: null}, cb1: {name: "CB", positions: ["CB"], player: null}, cb2: {name: "CB", positions: ["CB"], player: null}, cbS: {name: "CB/S", positions: ["CB", "S"], player: null}, ss: {name: "SS", positions: ["SS", "S"], player: null}, fs: {name: "FS", positions: ["FS", "S"], player: null}, p: {name: "P", positions: ["P"], player: null}, k: {name: "K", positions: ["K"], player: null}},
+      lineup: {qb: {name: "QB", positions: ["QB"], player: null}, rb1: {name: "RB", positions: ["RB"], player: null}, rb2: {name: "RB", positions: ["RB"], player: null}, wr1: {name: "WR", positions: ["WR"], player: null}, wr2: {name: "WR", positions: ["WR"], player: null}, wr3: {name: "WR", positions: ["WR"], player: null}, wr4: {name: "WR", positions: ["WR"], player: null}, te: {name: "TE", positions: ["TE"], player: null}, teWrRb: {name: "TE/WR/RB", positions: ["TE", "WR", "RB"], player: null}, ot1: {name: "OT", positions: ["OT"], player: null}, ot2: {name: "OT", positions: ["OT"], player: null}, g1: {name: "G", positions: ["G"], player: null}, g2: {name: "G", positions: ["G"], player: null}, c: {name: "C", positions: ["C"], player: null}, dt1: {name: "DT", positions: ["DT"], player: null}, dt2: {name: "DT", positions: ["DT"], player: null}, de1: {name: "DE", positions: ["DE"], player: null}, de2: {name: "DE", positions: ["DE"], player: null}, ilb1: {name: "ILB", positions: ["ILB", "LB"], player: null}, ilb2: {name: "ILB", positions: ["ILB", "LB"], player: null}, olb1: {name: "OLB", positions: ["OLB", "LB"], player: null}, olb2: {name: "OLB", positions: ["OLB", "LB"], player: null}, cb1: {name: "CB", positions: ["CB"], player: null}, cb2: {name: "CB", positions: ["CB"], player: null}, cbS: {name: "CB/S", positions: ["CB", "S", "FS", "SS"], player: null}, ss: {name: "SS", positions: ["SS", "S"], player: null}, fs: {name: "FS", positions: ["FS", "S"], player: null}, p: {name: "P", positions: ["P"], player: null}, k: {name: "K", positions: ["K"], player: null}},
       players: [],
-      edit: true,
+      edit: false,
       editButton: "Edit Lineup"
     }
     this.triggerFetch = this.triggerFetch.bind(this)
@@ -16,6 +16,7 @@ class Roster extends Component {
     this.generateBench = this.generateBench.bind(this)
     this.generatePS = this.generatePS.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
+    this.handleStartersSubmit = this.handleStartersSubmit.bind(this)
   }
 
 
@@ -60,8 +61,54 @@ class Roster extends Component {
         })
       lineup[key]["player"] = starter
     }
-    this.setState({ lineup: lineup })
+    this.setState({ lineup: lineup, edit: false, editButton: "Edit Lineup" })
   }
+
+  handleStartersSubmit(event) {
+    event.preventDefault()
+    let lineup = this.state.lineup
+    let playersToUpdate = {}
+    let updatedPlayers = 0
+    for (var key in lineup) {
+      if (!lineup.hasOwnProperty(key)) continue;
+      let currentStarter = lineup[key]["player"]
+      let currentStarterId
+      if (currentStarter) {
+        currentStarterId = currentStarter["id"]
+      } else {
+        currentStarterId = null
+      }
+      let form = document.getElementById(key)
+      let newStarterId
+      if (form.value != "") {
+        newStarterId = parseInt(form.value)
+      } else {
+        newStarterId = null
+      }
+      if (currentStarterId == newStarterId) {continue}
+      updatedPlayers += 1
+      if (currentStarterId) {playersToUpdate[currentStarterId] = "b"}
+      if (newStarterId) {playersToUpdate[newStarterId] = key}
+    }
+    let formPayload = {players: playersToUpdate}
+    if (updatedPlayers > 0) {
+      fetch('/api/v1/players/1', {
+        credentials: 'same-origin',
+        method: 'PATCH',
+        body: JSON.stringify(formPayload),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+       if (response.ok) {
+         this.triggerFetch()
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+  }
+ }
 
   generateRosterSlots() {
     const lineup = this.state.lineup
@@ -164,7 +211,7 @@ class Roster extends Component {
   generatePS() {
     const allPlayers = this.state.players
     const slots = []
-    let key = 0
+    let key = 10000
     allPlayers.forEach((player) => {
       if (player["role"] == "ps") {
         key += 1
@@ -192,9 +239,14 @@ class Roster extends Component {
     let starters = this.generateRosterSlots()
     let bench = this.generateBench()
     let practiceSquad = this.generatePS()
+    let submitButton
+    if (this.state.edit) {
+      submitButton = <button onClick={this.handleStartersSubmit}>Save Lineup</button>
+    }
     return (
       <div>
         <button onClick={this.toggleEdit}>{this.state.editButton}</button>
+        {submitButton}
         <h3>Starting Roster:</h3>
         <ul id="starters">
           { starters }
