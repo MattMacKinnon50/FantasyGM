@@ -36,7 +36,7 @@ data.each do |team|
   )
 end
 
-fa = Team.create(abbr: "FA", city: "Free", name: "Agents")
+fa = Team.create(abbr: "FA", city: "Free", name: "Agent")
 teams = Team.all
 abbr_array = []
 
