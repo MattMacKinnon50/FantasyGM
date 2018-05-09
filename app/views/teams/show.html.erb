@@ -1,3 +1,12 @@
+<% if @team.id != 33 %>
 <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
 
-  <div id='app' class='react-div'></div>
+<div id='app' class='react-div'></div>
+<% else %>
+<h1 class="FA-title">Free Agents</h1>
+
+<ul>
+  <% @players.each do |player| %>
+  <li> <%= player.position %> # <%= player.number  %> - <%= link_to player.name, player %> </li>
+  <% end %>
+<% end %>
