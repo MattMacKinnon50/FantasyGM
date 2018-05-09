@@ -1,63 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-class Slot extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showMenu: false,
-    }
-  }
+const Slot = props => {
 
-  render() {
-    if (this.props.starter) {
-      if (this.props.playerId != null) {
+  let eligiblePlayerList =[]
+
+  if (props.eligiblePlayers != null) {
+    props.eligiblePlayers.forEach ((player) => {
       return (
-        <li className= {this.props.className}>
-          <p>{this.props.positionName} - {this.props.number} <a href={`/players/${this.props.playerId}`}>{this.props.playerName}</a> - {this.props.position} {this.props.nflTeam} - Bye Week: {this.props.byeWeek}</p>
-          <div>
-              <button>
-                Show menu
-              </button>
-                {if (this.state.showMenu) {
-              <div className="menu">
-                <button> Menu item 1 </button>
-                <button> Menu item 2 </button>
-                <button> Menu item 3 </button>
-              </div>
-            }
-          </div>
+        eligiblePlayerList.unshift(<option value={player}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
+      )
+    })
+}
 
+  eligiblePlayerList.unshift(<option value={null}></option>)
+
+  if (props.role == "starter") {
+    if (props.edit) {
+      return (
+        <li className= {props.className}>
+          <form>
+            <label className="roster-label">{props.positionName}:
+              <select defaultValue={props.player} className="roster-select">
+                {eligiblePlayerList}
+              </select>
+            </label>
+          </form>
         </li>
       )
-    } else{
+    } else {
+      if (props.playerId != null) {
+      return (
+        <li className= {props.className}>
+          <p>{props.positionName} - {props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+        </li>
+      )
+    } else {
         return (
-        <li className= {this.props.className}>
-          <p>{this.props.positionName} - Empty Roster Spot </p>
-          <div>
-            <button>
-              Show menu
-            </button>
-            {if (this.state.showMenu) {
-                <div className="menu">
-                  <button> Menu item 1 </button>
-                  <button> Menu item 2 </button>
-                  <button> Menu item 3 </button>
-                </div>
-              }
-            </div>
-          </div>
+        <li className= {props.className}>
+          <p>{props.positionName} - Empty Roster Spot </p>
         </li>
         )
       }
-    } else {
+    }
+  } else if (props.role == "b")  {
       return (
-        <li className= {this.props.className}>
-          <p>{this.props.number} <a href={`/players/${this.props.playerId}`}>{this.props.playerName}</a> - {this.props.position} {this.props.nflTeam} - Bye Week: {this.props.byeWeek}</p>
+        <li className= {props.className}>
+          <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+        </li>
+      )
+  } else   {
+      return (
+        <li className= {props.className}>
+          <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
         </li>
       )
     }
   }
-}
 
 
 export default Slot
