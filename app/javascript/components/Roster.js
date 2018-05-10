@@ -8,7 +8,8 @@ class Roster extends Component {
       lineup: {qb: {name: "QB", positions: ["QB"], player: null}, rb1: {name: "RB", positions: ["RB"], player: null}, rb2: {name: "RB", positions: ["RB"], player: null}, wr1: {name: "WR", positions: ["WR"], player: null}, wr2: {name: "WR", positions: ["WR"], player: null}, wr3: {name: "WR", positions: ["WR"], player: null}, wr4: {name: "WR", positions: ["WR"], player: null}, te: {name: "TE", positions: ["TE"], player: null}, teWrRb: {name: "TE/WR/RB", positions: ["TE", "WR", "RB"], player: null}, ot1: {name: "OT", positions: ["OT"], player: null}, ot2: {name: "OT", positions: ["OT"], player: null}, g1: {name: "G", positions: ["G"], player: null}, g2: {name: "G", positions: ["G"], player: null}, c: {name: "C", positions: ["C"], player: null}, dt1: {name: "DT", positions: ["DT"], player: null}, dt2: {name: "DT", positions: ["DT"], player: null}, de1: {name: "DE", positions: ["DE"], player: null}, de2: {name: "DE", positions: ["DE"], player: null}, ilb1: {name: "ILB", positions: ["ILB", "LB"], player: null}, ilb2: {name: "ILB", positions: ["ILB", "LB"], player: null}, olb1: {name: "OLB", positions: ["OLB", "LB"], player: null}, olb2: {name: "OLB", positions: ["OLB", "LB"], player: null}, cb1: {name: "CB", positions: ["CB"], player: null}, cb2: {name: "CB", positions: ["CB"], player: null}, cbS: {name: "CB/S", positions: ["CB", "S", "FS", "SS"], player: null}, ss: {name: "SS", positions: ["SS", "S"], player: null}, fs: {name: "FS", positions: ["FS", "S"], player: null}, p: {name: "P", positions: ["P"], player: null}, k: {name: "K", positions: ["K"], player: null}},
       players: [],
       edit: false,
-      editButton: "Edit Lineup"
+      editButton: "Edit Lineup",
+      manager: "false"
     }
     this.triggerFetch = this.triggerFetch.bind(this)
     this.setLineup = this.setLineup.bind(this)
@@ -17,11 +18,29 @@ class Roster extends Component {
     this.generatePS = this.generatePS.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
     this.handleStartersSubmit = this.handleStartersSubmit.bind(this)
+    this.getCookie = this.getCookie.bind(this)
   }
 
 
   componentDidMount() {
+    this.setState({ manager: this.getCookie("manager")})
     this.triggerFetch()
+  }
+
+  getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
   }
 
   triggerFetch() {
@@ -240,12 +259,17 @@ class Roster extends Component {
     let bench = this.generateBench()
     let practiceSquad = this.generatePS()
     let submitButton
+    let editButton
     if (this.state.edit) {
       submitButton = <button onClick={this.handleStartersSubmit}>Save Lineup</button>
     }
+    if (this.state.manager == "true") {
+      editButton = <button onClick={this.toggleEdit}>{this.state.editButton}</button>
+    }
+
     return (
       <div>
-        <button onClick={this.toggleEdit}>{this.state.editButton}</button>
+        {editButton}
         {submitButton}
         <h3>Starting Roster:</h3>
         <ul id="starters">
