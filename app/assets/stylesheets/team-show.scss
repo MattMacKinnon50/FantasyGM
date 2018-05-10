@@ -1,9 +1,52 @@
 .show-title {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block;
   max-height: 8em;
-  margin-top: 1em
+  max-width: 20em;
+  margin: auto;
+  padding: 3%;
+  vertical-align: middle;
+}
+
+.stripe {
+  height: 5em;
+}
+
+.team-img-frame {
+  border:5px;
+  border-style: solid;
+  width: 21em;
+  height: 9em;
+  position: absolute;
+  top: 5em;
+  left: 4em;
+  background-color: white;
+  white-space: nowrap;
+  text-align: center; margin: 1em 0;
+}
+
+.team-img-frame:before,
+.team-img-frame_before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.show-body {
+  background-image: url("grass2.jpg");
+  padding:2em;
+}
+
+.react-div {
+  margin:5%;
+  margin-top: 0;
+  border:5px;
+  border-style: solid;
+  background-color: #F0F0F0
+}
+
+#starters {
+  list-style: none;
 }
 
 .roster-select {
