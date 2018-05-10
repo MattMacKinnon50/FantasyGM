@@ -6,6 +6,8 @@ feature 'user registers', %Q{
   So that I can create an account
 } do
 
+  let!(:team) {FactoryBot.create(:team)}
+
   # Acceptance Criteria:
   # * I must specify a valid email address,
   #   password, and password confirmation
@@ -18,6 +20,9 @@ feature 'user registers', %Q{
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
+    fill_in 'Name', with: 'John'
+    select team.name, from: 'Team'
+
 
     click_button 'Sign up'
 
