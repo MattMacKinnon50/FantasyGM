@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :set_user
   def index
     @teams = Team.where.not(abbr: "FA")
     @teams = @teams.order(:division, :conference, :city)
