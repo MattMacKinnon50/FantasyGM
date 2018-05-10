@@ -7,7 +7,7 @@ const Slot = props => {
   if (props.eligiblePlayers != null) {
     props.eligiblePlayers.forEach ((player) => {
       return (
-        eligiblePlayerList.unshift(<option key={player.id} value={player.id}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
+        eligiblePlayerList.push(<option key={player.id} value={player.id}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
       )
     })
 }

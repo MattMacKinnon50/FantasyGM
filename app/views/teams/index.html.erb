@@ -2,6 +2,6 @@
 
 <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
   <% @teams.each do |team| %>
-    <li> <%= link_to image_tag(team.wikipedia_logo_url, :class => "image-link"), team %></li>
+    <li> <%= link_to image_tag(team.wikipedia_logo_url, :alt => team.full_name, :title => team.full_name, :class => "image-link"), team %></li>
   <% end %>
 </ul>
