@@ -11,7 +11,7 @@ feature 'user views a team index page' do
 
     expect(page).to have_content("Teams")
     expect(page).to have_xpath("//img[@src= \"#{team1.wikipedia_logo_url}\"]")
-        expect(page).to have_xpath("//img[@src= \"#{team2.wikipedia_logo_url}\"]")
+    expect(page).to have_xpath("//img[@src= \"#{team2.wikipedia_logo_url}\"]")
   end
 
   scenario 'signed in user sees team index ' do
