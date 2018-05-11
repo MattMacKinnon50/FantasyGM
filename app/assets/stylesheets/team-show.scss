@@ -1,3 +1,5 @@
+@import 'colors';
+
 .show-title {
   display: inline-block;
   max-height: 8em;
@@ -49,10 +51,43 @@
   list-style: none;
 }
 
-.roster-select {
-
+#bench {
+  list-style: none;
 }
 
-.roster-label {
+#ps {
+  list-style: none;
+}
 
+.team-details-container {
+
+}
+.team-details {
+  list-style: none;
+}
+
+.team-details-title {
+  padding-top: 0.2em;
+}
+
+.line-break {
+  height:0.5em;
+}
+
+.roster-button {
+  background-color: $nfl-blue;
+  margin-top:0.5em;
+  margin-left:1em;
+}
+
+.roster-title {
+  margin-left: 1em;
+}
+
+.player-dropdown {
+  margin-right: 3em;
+}
+
+.roster-slot {
+  margin:0.1em;
 }

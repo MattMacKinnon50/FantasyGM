@@ -151,7 +151,7 @@ class Roster extends Component {
         slots.push(
             <Slot
               key={key}
-              className={"starting-player"}
+              className={"roster-slot starting-player"}
               slot={key}
               player={player}
               playerName={player["name"]}
@@ -172,7 +172,7 @@ class Roster extends Component {
           slots.push(
               <Slot
                 key={key}
-                className={"empty-slot"}
+                className={"roster-slot empty-slot"}
                 slot={key}
                 playerName={null}
                 playerId={null}
@@ -211,7 +211,7 @@ class Roster extends Component {
         slots.push(
           <Slot
             key={key}
-            className={"bench-player"}
+            className={"roster-slot bench-player"}
             playerName={player["name"]}
             playerId={player["id"]}
             position={player["position"]}
@@ -237,7 +237,7 @@ class Roster extends Component {
         slots.push(
           <Slot
             key={key}
-            className={"ps-player"}
+            className={"roster-slot ps-player"}
             playerName={player["name"]}
             playerId={player["id"]}
             position={player["position"]}
@@ -261,25 +261,25 @@ class Roster extends Component {
     let submitButton
     let editButton
     if (this.state.edit) {
-      submitButton = <button onClick={this.handleStartersSubmit}>Save Lineup</button>
+      submitButton = <button className="roster-button" onClick={this.handleStartersSubmit}>Save Lineup</button>
     }
     if (this.state.manager == "true") {
-      editButton = <button onClick={this.toggleEdit}>{this.state.editButton}</button>
+      editButton = <button className="roster-button" onClick={this.toggleEdit}>{this.state.editButton}</button>
     }
 
     return (
       <div>
         {editButton}
         {submitButton}
-        <h3>Starting Roster:</h3>
+        <h3 className="roster-title">Starting Roster:</h3>
         <ul id="starters">
           { starters }
         </ul>
-        <h3>Bench:</h3>
+        <h3 className="roster-title">Bench:</h3>
         <ul id="bench">
           { bench }
         </ul>
-        <h3>Practice Squad:</h3>
+        <h3 className="roster-title">Practice Squad:</h3>
         <ul id="ps">
           { practiceSquad }
         </ul>
