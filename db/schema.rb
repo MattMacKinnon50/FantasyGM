@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_020630) do
+ActiveRecord::Schema.define(version: 2018_05_11_161422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2018_05_10_020630) do
     t.integer "fantasy_stats_2017"
     t.integer "fantasy_stats_ppr_2017"
     t.string "role", default: "b"
+    t.boolean "ps_eligibility", default: false
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 

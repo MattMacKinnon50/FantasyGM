@@ -76,8 +76,26 @@
 
 .roster-button {
   background-color: $nfl-blue;
+  border-radius: 4px;
   margin-top:0.5em;
   margin-left:1em;
+  cursor: pointer;
+  box-shadow: 0 9px #999;
+}
+
+.roster-button:hover {
+  background-color: $nfl-red;
+}
+
+ .roster-button:focus {
+   background-color: $nfl-blue;
+   outline:0;
+ }
+
+.roster-button:active {
+  background-color: $nfl-red;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .roster-title {
@@ -90,4 +108,16 @@
 
 .roster-slot {
   margin:0.1em;
+}
+
+.bench-buttons {
+  display: flex;
+  min-width: 48%;
+  label {
+    margin-right: 2em;
+  }
+}
+
+.player-dropdown {
+  max-width: 80%;
 }
