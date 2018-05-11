@@ -166,6 +166,7 @@ class Roster extends Component {
               byeWeek={player["bye_week"]}
               role={"starter"}
               edit={this.state.edit}
+              psEligible="true"
             />
           )
         } else {
@@ -186,6 +187,7 @@ class Roster extends Component {
                 byeWeek={null}
                 role={"starter"}
                 edit={this.state.edit}
+                psEligible="true"
               />
             )
         }
@@ -221,6 +223,8 @@ class Roster extends Component {
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
             role={"b"}
+            edit={this.state.edit}
+            psEligible="true"
           />
         )
       }
@@ -247,6 +251,8 @@ class Roster extends Component {
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
             role={"ps"}
+            edit={this.state.edit}
+            psEligible="true"
           />
         )
       }

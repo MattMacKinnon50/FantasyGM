@@ -6,11 +6,16 @@ const Slot = props => {
 
   if (props.eligiblePlayers != null) {
     props.eligiblePlayers.forEach ((player) => {
+      let key = player.id
       return (
-        eligiblePlayerList.push(<option key={player.id} value={player.id}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
+        eligiblePlayerList.push(<option key={key} value={player.id}>{player.number} {player.name} - {player.position} {player.nfl_team} - Bye Week: {player.bye_week}</option>)
       )
     })
 }
+  let moveToPs
+  if (props.psEligible == "true") {
+    moveToPs = <label><input name="move-to-ps" className="move-to-ps" type="checkbox" value={props.playerId}/>Move to Practice Squad</label>
+  }
 
   eligiblePlayerList.unshift(<option value={null}></option>)
 
@@ -39,16 +44,28 @@ const Slot = props => {
         return (
         <li className= {props.className}>
           <p>{props.positionName} - Empty Roster Spot </p>
+          <hr/>
         </li>
         )
       }
     }
   } else if (props.role == "b")  {
+    if (props.edit) {
       return (
         <li className= {props.className}>
-          <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+          <form>
+            <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+            <label><input name="drop-player" type="checkbox" value={props.playerId}/> Release Player to Free Agency</label>
+            {moveToPs}
+          </form>
         </li>
       )
+    } else {
+      return (
+      <li className= {props.className}>
+        <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+      </li>
+    )}
   } else   {
       return (
         <li className= {props.className}>
