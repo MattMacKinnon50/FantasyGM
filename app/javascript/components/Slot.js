@@ -20,7 +20,7 @@ const Slot = props => {
         <li className= {props.className}>
           <form>
             <label className="roster-label">{props.positionName}:
-              <select defaultValue={props.playerId} id={props.slot} className="roster-select">
+              <select defaultValue={props.playerId} id={props.slot} className="player-dropdown" >
                 {eligiblePlayerList}
               </select>
             </label>
@@ -32,6 +32,7 @@ const Slot = props => {
       return (
         <li className= {props.className}>
           <p>{props.positionName} - {props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+          <hr/>
         </li>
       )
     } else {

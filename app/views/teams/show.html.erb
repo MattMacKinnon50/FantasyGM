@@ -6,6 +6,28 @@
   <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
 </div>
 
+<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="row team-details-container">
+  <div class="columns small-6">
+    <h5 class="team-details-title">Coaching Staff</h5>
+    <ul class="team-details">
+      <li>Head Coach: <%= @team.head_coach %></li>
+      <li>Off. Coordinator: <%= @team.offensive_coordinator %></li>
+      <li>Def. Coordinator: <%= @team.defensive_coordinator %></li>
+      <li>Special Teams Coach: <%= @team.special_teams_coach %></li>
+    </ul>
+  </div>
+  <div class="columns small-6">
+    <h5 class="team-details-title">Stadium</h5>
+    <ul class="team-details">
+      <li><%= @team.stadium_name %></li>
+      <li><%= @team.stadium_city %>, <%= @team.stadium_state %></li>
+      <li>Capacity: <%= @team.stadium_capacity %></li>
+      <li>Field Type: <%= @team.stadium_playing_surface %></li>
+    </ul>
+  </div>
+</div>
+<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
 
 <div class="show-body" >
   <div id='app' style="border-color:#<%=@team.primary_color%>"  class='react-div'></div>
