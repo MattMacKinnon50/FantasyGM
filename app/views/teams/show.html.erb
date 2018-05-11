@@ -1,7 +1,15 @@
 <% if @team.id != 33 %>
-<img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+</div>
 
-<div id='app' class='react-div'></div>
+
+<div class="show-body" >
+  <div id='app' style="border-color:#<%=@team.primary_color%>"  class='react-div'></div>
+</div>
 <% else %>
 <h1 class="FA-title">Free Agents</h1>
 
