@@ -1,12 +1,12 @@
-<% if @team.id != 33 %>
 <div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
 <div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
 <div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
 <div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
   <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
 </div>
-
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+
+<% if @team.id != 33 %>
 <div class="row team-details-container">
   <div class="columns small-6">
     <h5 class="team-details-title">Coaching Staff</h5>
@@ -32,6 +32,7 @@
 <div class="show-body" >
   <div id='app' style="border-color:#<%=@team.primary_color%>"  class='react-div'></div>
 </div>
+
 <% else %>
 <h1 class="FA-title">Free Agents</h1>
 
