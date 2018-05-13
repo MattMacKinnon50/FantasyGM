@@ -2,3 +2,6 @@
 <h2> <%= @player.name %> </h2>
 <h4> <%= @player.position %> - <%= @player.number %> - <%= @player.team.full_name %></h4>
 <h4> NFL Team: <% if @player.nfl_team %><%= @player.nfl_team %><% else %> None <% end %> </h4>
+<% if current_user && @player.team_id = "33"%>
+  <%= link_to "Add Player", player_add_path(@player), method: :patch %>
+<% end %>

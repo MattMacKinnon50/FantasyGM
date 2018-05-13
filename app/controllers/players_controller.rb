@@ -12,7 +12,7 @@ class PlayersController < ApplicationController
     player.team = team
     player.save
     flash[:notice] = "#{player.name} added to #{team.full_name} bench."
-    redirect_to "/teams/33"
+    redirect_back(fallback_location: "/teams/33")
   end
 
 end
