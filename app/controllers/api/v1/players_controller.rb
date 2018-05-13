@@ -6,10 +6,22 @@ class Api::V1::PlayersController < ApplicationController
 
   def update
     players = params["players"]
-    players.each do |id, role|
+    teams = Team.all
+    abbr_array = []
+    teams.each do |team|
+      abbr_array << team.abbr
+    end
+    players.each do |id, value|
       player = Player.find(id)
-      player.role = role 
-      player.save
+      if abbr_array.include?(value)
+        team = Team.find_by(abbr: value)
+        player.team = team
+        player.role = "b"
+        player.save
+      else
+        player.role = value
+        player.save
+      end
     end
   end
 end

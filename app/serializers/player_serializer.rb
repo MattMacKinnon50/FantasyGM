@@ -1,5 +1,5 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :team_id, :nfl_team, :number, :first_name, :last_name, :name, :position, :bye_week, :role, :primary_color, :secondary_color
+  attributes :id, :team_id, :nfl_team, :number, :first_name, :last_name, :name, :position, :bye_week, :role, :primary_color, :secondary_color, :ps_eligibility
 
   def name
     [object.first_name, object.last_name].join(' ')

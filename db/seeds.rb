@@ -89,4 +89,10 @@ abbr_array.each do |org|
       fantasy_stats_ppr_2017: statsppr17
     )
   end
+
+  ps = Player.where("experience <= 2")
+  ps.each do |player|
+    player.ps_eligibility = true
+    player.save
+  end
 end

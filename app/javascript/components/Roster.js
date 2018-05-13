@@ -9,7 +9,10 @@ class Roster extends Component {
       players: [],
       edit: false,
       editButton: "Edit Lineup",
-      manager: "false"
+      manager: "false",
+      playersToDrop: [],
+      playersToDemote: [],
+      playersToPromote: []
     }
     this.triggerFetch = this.triggerFetch.bind(this)
     this.setLineup = this.setLineup.bind(this)
@@ -17,8 +20,11 @@ class Roster extends Component {
     this.generateBench = this.generateBench.bind(this)
     this.generatePS = this.generatePS.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
-    this.handleStartersSubmit = this.handleStartersSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.getCookie = this.getCookie.bind(this)
+    this.toggleDrop = this.toggleDrop.bind(this)
+    this.toggleDemote = this.toggleDemote.bind(this)
+    this.togglePS = this.togglePS.bind(this)
   }
 
 
@@ -67,6 +73,7 @@ class Roster extends Component {
     })
     .catch ( error => console.error(`Error in fetch: ${error.message}`) );
   }
+
   setLineup() {
     const players = this.state.players
     let lineup = this.state.lineup
@@ -83,11 +90,52 @@ class Roster extends Component {
     this.setState({ lineup: lineup, edit: false, editButton: "Edit Lineup" })
   }
 
-  handleStartersSubmit(event) {
+  toggleDrop(id) {
+    let playersToDrop = this.state.playersToDrop
+    if (playersToDrop.includes(id)) {
+      let index = playersToDrop.indexOf(id)
+      playersToDrop.splice(index, 1)
+    } else {
+      playersToDrop.push(id)
+    }
+    this.setState({playersToDrop: playersToDrop})
+  }
+
+  togglePS(id) {
+    let playersToPromote = this.state.playersToPromote
+    if (playersToPromote.includes(id)) {
+      let index = playersToPromote.indexOf(id)
+      playersToPromote.splice(index, 1)
+    } else {
+      playersToPromote.push(id)
+    }
+    this.setState({playersToPromote: playersToPromote})
+
+  }
+
+  toggleDemote(id) {
+    let playersToDemote = this.state.playersToDemote
+    if (playersToDemote.includes(id)) {
+      let index = playersToDemote.indexOf(id)
+      playersToDemote.splice(index, 1)
+    } else {
+      playersToDemote.push(id)
+    }
+    this.setState({playersToDemote: playersToDemote})
+
+  }
+
+  handleSubmit(event) {
     event.preventDefault()
     let lineup = this.state.lineup
+    let playersToDrop = this.state.playersToDrop
+    let playersToDemote = this.state.playersToDemote
+    let playersToPromote = this.state.playersToPromote
     let playersToUpdate = {}
     let updatedPlayers = 0
+    updatedPlayers += playersToDrop.length
+    updatedPlayers += playersToDemote.length
+    updatedPlayers += playersToPromote.length
     for (var key in lineup) {
       if (!lineup.hasOwnProperty(key)) continue;
       let currentStarter = lineup[key]["player"]
@@ -97,10 +145,10 @@ class Roster extends Component {
       } else {
         currentStarterId = null
       }
-      let form = document.getElementById(key)
+      let starters = document.getElementById(key)
       let newStarterId
-      if (form.value != "") {
-        newStarterId = parseInt(form.value)
+      if (starters.value != "") {
+        newStarterId = parseInt(starters.value)
       } else {
         newStarterId = null
       }
@@ -109,6 +157,17 @@ class Roster extends Component {
       if (currentStarterId) {playersToUpdate[currentStarterId] = "b"}
       if (newStarterId) {playersToUpdate[newStarterId] = key}
     }
+    playersToDrop.forEach((playerId) => {
+      playersToUpdate[playerId] = "FA"
+    })
+    playersToDemote.forEach((playerId) => {
+      playersToUpdate[playerId] = "ps"
+    })
+    playersToPromote.forEach((playerId) => {
+      playersToUpdate[playerId] = "b"
+    })
+
+
     let formPayload = {players: playersToUpdate}
     if (updatedPlayers > 0) {
       fetch('/api/v1/players/1', {
@@ -119,6 +178,11 @@ class Roster extends Component {
       })
       .then(response => {
        if (response.ok) {
+         this.setState({
+           playersToDrop: [],
+           playersToDemote: [],
+           playersToPromote: []
+         })
          this.triggerFetch()
        } else {
          let errorMessage = `${response.status} (${response.statusText})`,
@@ -141,7 +205,7 @@ class Roster extends Component {
 
       allPlayers.forEach((player) => {
           eligiblePositions.forEach((position) => {
-            if (player["position"] == position) {
+            if (player["position"] == position  && player["role"] != "ps") {
             eligiblePlayers.push(player)
             }
           })
@@ -166,6 +230,7 @@ class Roster extends Component {
               byeWeek={player["bye_week"]}
               role={"starter"}
               edit={this.state.edit}
+              psEligible={player["ps_eligibility"]}
             />
           )
         } else {
@@ -195,9 +260,21 @@ class Roster extends Component {
 
   toggleEdit() {
     if (this.state.edit == false) {
-      this.setState({edit: true, editButton: "Cancel"})
+      this.setState({
+        edit: true,
+        editButton: "Cancel",
+        playersToDrop: [],
+        playersToDemote: [],
+        playersToPromote: []
+      })
     } else {
-      this.setState({edit: false, editButton: "Edit Lineup"})
+      this.setState({
+        edit: false,
+        editButton: "Edit Lineup",
+        playersToDrop: [],
+        playersToDemote: [],
+        playersToPromote: []
+      })
     }
   }
 
@@ -221,6 +298,10 @@ class Roster extends Component {
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
             role={"b"}
+            edit={this.state.edit}
+            psEligible={player["ps_eligibility"]}
+            toggleDrop={this.toggleDrop}
+            toggleDemote={this.toggleDemote}
           />
         )
       }
@@ -247,6 +328,9 @@ class Roster extends Component {
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
             role={"ps"}
+            edit={this.state.edit}
+            psEligible={player["ps_eligibility"]}
+            togglePS={this.togglePS}
           />
         )
       }
@@ -261,7 +345,7 @@ class Roster extends Component {
     let submitButton
     let editButton
     if (this.state.edit) {
-      submitButton = <button className="roster-button" onClick={this.handleStartersSubmit}>Save Lineup</button>
+      submitButton = <button className="roster-button" onClick={this.handleSubmit}>Save Lineup</button>
     }
     if (this.state.manager == "true") {
       editButton = <button className="roster-button" onClick={this.toggleEdit}>{this.state.editButton}</button>
