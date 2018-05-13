@@ -6,9 +6,9 @@ class TeamsController < ApplicationController
   end
 
   def show
-      @team = Team.find(params[:id])
-      playerList = @team.players.where.not(position: nil)
-      @players = playerList.order(:last_name)
+    @team = Team.find(params[:id])
+    playerList = @team.players.where.not(position: nil)
+    @players = playerList.order(:last_name)
   end
 
   private

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :players
   end
 
-  resources :players
+  resources :players do
+    patch :add
+  end
 
 end

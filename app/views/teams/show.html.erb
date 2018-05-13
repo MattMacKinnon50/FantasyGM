@@ -37,6 +37,11 @@
 
 <ul>
   <% @players.each do |player| %>
-  <li> <%= player.position %> # <%= player.number  %> - <%= link_to player.name, player %> </li>
+  <div class="free-agent-slot">
+    <li> <%= player.position %> # <%= player.number  %> - <%= link_to player.name, player %> </li>
+    <% if current_user %>
+      <%= link_to "Add Player", player_add_path(player), method: :patch %>
+    <% end %>
+  </div>
   <% end %>
 <% end %>
