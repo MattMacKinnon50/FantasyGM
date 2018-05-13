@@ -9,13 +9,14 @@ class Api::V1::PlayersController < ApplicationController
     teams = Team.all
     abbr_array = []
     teams.each do |team|
-      abbr_array << [team.abbr, team]
+      abbr_array << team.abbr
     end
     players.each do |id, value|
+      binding.pry
       player = Player.find(id)
       if abbr_array.include?(value)
         team = Team.find_by(abbr: value)
-        player.team = value
+        player.team = team
         player.save
       else
         player.role = value

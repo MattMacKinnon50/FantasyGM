@@ -101,7 +101,7 @@ class Roster extends Component {
     this.setState({playersToDrop: playersToDrop})
   }
 
-  toggleDemote(id) {
+  togglePS(id) {
     let playersToPromote = this.state.playersToPromote
     if (playersToPromote.includes(id)) {
       let index = playersToPromote.indexOf(id)
@@ -113,7 +113,7 @@ class Roster extends Component {
 
   }
 
-  togglePS(id) {
+  toggleDemote(id) {
     let playersToDemote = this.state.playersToDemote
     if (playersToDemote.includes(id)) {
       let index = playersToDemote.indexOf(id)

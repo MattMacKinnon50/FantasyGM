@@ -69,14 +69,22 @@ const Slot = props => {
       </li>
     )}
   } else   {
-      return (
+      if (props.edit) {
+        return (
+          <li className= {props.className}>
+            <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+            <div className="bench-buttons">
+              <label><input className= "promote-player" name="promote-player" type="checkbox" onClick={() => {props.togglePS(props.playerId)}} value={props.playerId}/> Promote Player to Bench</label>
+            </div>
+          </li>
+        )
+      } else {
+        return (
         <li className= {props.className}>
           <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
-          <div className="bench-buttons">
-            <label><input className= "promote-player" name="promote-player" type="checkbox" onClick={() => {props.togglePS(props.playerId)}} value={props.playerId}/> Promote Player to Bench</label>
-          </div>
         </li>
-      )
+        )
+      }
     }
   }
 
