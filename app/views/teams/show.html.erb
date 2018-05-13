@@ -8,6 +8,10 @@
 
 <% if @team.id != 33 %>
 <div class="row team-details-container">
+  <% if @current_user && @current_user.team_id == @team.id %>
+    <%= link_to "Add a Player", '/teams/free_agents' %>
+    <%= link_to "Make a Trade",  %>
+  <% end %>
   <div class="columns small-6">
     <h5 class="team-details-title">Coaching Staff</h5>
     <ul class="team-details">
@@ -17,7 +21,7 @@
       <li>Special Teams Coach: <%= @team.special_teams_coach %></li>
     </ul>
   </div>
-  <div class="columns small-6">
+  <div class="columns small-5">
     <h5 class="team-details-title">Stadium</h5>
     <ul class="team-details">
       <li><%= @team.stadium_name %></li>

@@ -12,8 +12,14 @@ Rails.application.routes.draw do
     resources :players
   end
 
+  resources :teams do
+    resources :trades
+  end
+
   resources :players do
     patch :add
   end
+
+  resources :trades
 
 end
