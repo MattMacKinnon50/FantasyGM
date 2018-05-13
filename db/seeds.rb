@@ -36,7 +36,14 @@ data.each do |team|
   )
 end
 
-fa = Team.create(abbr: "FA", city: "Free", name: "Agent")
+fa = Team.create(
+  abbr: "FA",
+  city: "Free",
+  name: "Agent",
+  wikipedia_logo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/358px-National_Football_League_logo.svg.png",
+  wikipedia_wordmark_url: "https://i2.wp.com/copelandcoaching.com/wp-content/uploads/2015/10/image.jpeg",
+  primary_color: "233E6F",
+  secondary_color: "D30614")
 teams = Team.all
 abbr_array = []
 

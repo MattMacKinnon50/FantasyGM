@@ -6,7 +6,11 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
+    if params[:id] == "free_agents"
+      @team = Team.find(33)
+    else
+      @team = Team.find(params[:id])
+    end
     playerList = @team.players.where.not(position: nil)
     @players = playerList.order(:last_name)
   end
