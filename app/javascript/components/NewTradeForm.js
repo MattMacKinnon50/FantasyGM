@@ -253,20 +253,27 @@ class NewTradeForm extends Component {
     let team2Assets = this.buildTeam2Available()
     let team1ToTrade = this.buildTeam1ToTrade()
     let team2ToTrade = this.buildTeam2ToTrade()
-    let team1Name
+    let team1Img
     if (this.state.currentTeam) {
-      team1Name = `${this.state.currentTeam["city"]} ${this.state.currentTeam["name"]}`
+      team1Img = <img className ="image-link" src={this.state.currentTeam["wikipedia_logo_url"]} alt={this.state.currentTeam["name"]}/>
     }
-    let team2Name
+    let team2Img
     if (this.state.otherTeam) {
-      team2Name = `${this.state.otherTeam["city"]} ${this.state.otherTeam["name"]}`
+      team2Img = <img className ="image-link" src={this.state.otherTeam["wikipedia_logo_url"]} alt={this.state.otherTeam["name"]}/>
     } else {
-      team2Name = ""
+      team2Img = <img className ="image-link" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png" alt="Select a Team"/>
     }
     let options = this.buildTeamDropdown()
     return (
       <div>
-        <h3> {team1Name} and {team2Name} </h3>
+        <div className="row">
+          <div className="columns small-6">
+            {team1Img}
+          </div>
+          <div className="columns small-6">
+            {team2Img}
+          </div>
+        </div>
         <hr/>
         <div className="row">
           <h5>Players to Trade</h5>
