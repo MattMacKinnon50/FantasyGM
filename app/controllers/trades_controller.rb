@@ -1,2 +1,22 @@
-class TeamsController < ApplicationController
+class TradesController < ApplicationController
+  before_action :set_team
+  def index
+  end
+
+  def new
+    @current_team = Team.find(current_user.team_id)
+    @teams = Team.where.not("id = 33 OR id = ?", @current_team.id )
+    @team_options = []
+    @teams.each do |team|
+      @team_options << [team.full_name, team.id]
+    end
+  end
+
+  private
+
+  def set_team
+    if current_user
+      cookies[:team_id] = current_user.team_id
+    end
+  end
 end
