@@ -1,6 +1,7 @@
 class TradesController < ApplicationController
   before_action :set_team
   def index
+    @trades = Trade.all.reverse
   end
 
   def new

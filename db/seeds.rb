@@ -103,3 +103,10 @@ abbr_array.each do |org|
     player.save
   end
 end
+
+admin = User.create(
+  email: "admin@fakeemail.com",
+  password: "password",
+  password_confirmation: "password",
+  team_id: 21
+)

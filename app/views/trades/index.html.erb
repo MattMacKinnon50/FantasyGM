@@ -1,1 +1,37 @@
+<% if current_user %>
 <%= link_to "Make a new Trade", new_trade_path %>
+<% end %>
+
+<div>
+  <ul class="trade-list">
+    <% @trades.each do |trade| %>
+    <li class="trade-item">
+      <div class="row trade-team">
+        <div class= "columns small-6">
+          <img class= "trade-logo" src= <%= trade.team1.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+        </div>
+        <div class= "columns small-6">
+          <ul class="asset-list">
+            <% trade.team1_players.each do |player| %>
+              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <div class="row trade-team">
+        <div class= "columns small-6">
+          <img class= "trade-logo" src= <%= trade.team2.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+        </div>
+        <div class= "columns small-6">
+          <ul class="asset-list">
+            <% trade.team2_players.each do |player| %>
+              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+</div>

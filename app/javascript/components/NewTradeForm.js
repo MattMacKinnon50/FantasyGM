@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Asset from './Asset'
+
+
 class NewTradeForm extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class NewTradeForm extends Component {
     this.handleTeamChange = this.handleTeamChange.bind(this)
     this.buildTeam2Available = this.buildTeam2Available.bind(this)
     this.buildTeam2ToTrade = this.buildTeam2ToTrade.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -247,6 +250,40 @@ class NewTradeForm extends Component {
     })
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    let team1Id = this.state.currentTeamId
+    let team2Id = this.state.otherTeamId
+    let team1Assets = this.state.currentTeamAssets
+    let team2Assets = this.state.otherTeamAssets
+    if (team1Assets.length > 0 && team2Assets.length > 0) {
+    let formPayload = {
+      team_id: team2Id,
+      team1Id: team1Id,
+      team2Id: team2Id,
+      team1Assets: team1Assets,
+      team2Assets: team2Assets
+    }
+    fetch('/api/v1/trades.json', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+         window.location.href= "/trades"
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+  } else {
+    {alert('Both teams must include players in the deal.');}
+  }
+}
+
 
   render() {
     let team1Assets = this.buildTeam1Available()
@@ -274,6 +311,7 @@ class NewTradeForm extends Component {
             {team2Img}
           </div>
         </div>
+        <button className="roster-button" onClick={this.handleSubmit}>Submit Trade</button>
         <hr/>
         <div className="row">
           <h5>Players to Trade</h5>
