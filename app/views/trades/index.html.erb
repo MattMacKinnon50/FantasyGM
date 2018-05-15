@@ -1,5 +1,6 @@
 <% if current_user %>
 <%= link_to "Make a new Trade", new_trade_path %>
+<%= link_to "View My Pending Trades", "/teams/#{current_user.team_id}/trades/1" %>
 <% end %>
 
 <div>
