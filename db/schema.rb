@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_11_161422) do
+ActiveRecord::Schema.define(version: 2018_05_14_201153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(version: 2018_05_11_161422) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trades", force: :cascade do |t|
+    t.integer "team1_id", null: false
+    t.integer "team2_id", null: false
+    t.string "team1_assets", null: false
+    t.string "team2_assets", null: false
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -98,4 +108,5 @@ ActiveRecord::Schema.define(version: 2018_05_11_161422) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "trades", "teams"
 end

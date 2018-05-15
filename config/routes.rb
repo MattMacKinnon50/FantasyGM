@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :players
+      resources :trades
     end
   end
 
@@ -12,8 +13,14 @@ Rails.application.routes.draw do
     resources :players
   end
 
+  resources :teams do
+    resources :trades
+  end
+
   resources :players do
     patch :add
   end
+
+  resources :trades
 
 end

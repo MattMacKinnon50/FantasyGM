@@ -1,0 +1,25 @@
+@import 'colors';
+
+.trade-logo {
+  max-width: 6em;
+  max-height: 4em;
+}
+
+.trade-item {
+  border: 3px;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: $nfl-blue;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+.trade-list {
+  list-style: none;
+}
+
+.asset-list {
+  list-style: none;
+}
