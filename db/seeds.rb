@@ -108,5 +108,6 @@ admin = User.create(
   email: "admin@fakeemail.com",
   password: "password",
   password_confirmation: "password",
-  team_id: 21
+  team_id: 21,
+  admin: true
 )

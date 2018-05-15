@@ -36,15 +36,16 @@ const Slot = props => {
       if (props.playerId != null) {
       return (
         <li className= {props.className}>
-          <p>{props.positionName} - {props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
-          <hr/>
+          <span className="slot-data">
+            <p className="slot-label">{props.positionName}</p>
+            <p className="slot-player"><a href={`/players/${props.playerId}`}>{props.playerName}</a> - #{props.number} {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+          </span>
         </li>
       )
     } else {
         return (
         <li className= {props.className}>
           <p>{props.positionName} - Empty Roster Spot </p>
-          <hr/>
         </li>
         )
       }
@@ -54,7 +55,7 @@ const Slot = props => {
       return (
         <li className= {props.className}>
           <form>
-            <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+            <p><a href={`/players/${props.playerId}`}>{props.playerName}</a> - #{props.number} {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
             <div className="bench-buttons">
               <label><input className= "drop-player" name="drop-player" type="checkbox" onChange={() => {props.toggleDrop(props.playerId)}} value={props.playerId}/>  Release Player to Free Agency</label>
               {moveToPs}
@@ -65,14 +66,14 @@ const Slot = props => {
     } else {
       return (
       <li className= {props.className}>
-        <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+        <p><a href={`/players/${props.playerId}`}>{props.playerName}</a> - #{props.number} {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
       </li>
     )}
   } else   {
       if (props.edit) {
         return (
           <li className= {props.className}>
-            <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+            <p><a href={`/players/${props.playerId}`}>{props.playerName}</a> - #{props.number} {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
             <div className="bench-buttons">
               <label><input className= "promote-player" name="promote-player" type="checkbox" onClick={() => {props.togglePS(props.playerId)}} value={props.playerId}/> Promote Player to Bench</label>
             </div>
@@ -81,7 +82,7 @@ const Slot = props => {
       } else {
         return (
         <li className= {props.className}>
-          <p>{props.number} <a href={`/players/${props.playerId}`}>{props.playerName}</a> - {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
+          <p><a href={`/players/${props.playerId}`}>{props.playerName}</a> - #{props.number} {props.position} {props.nflTeam} - Bye Week: {props.byeWeek}</p>
         </li>
         )
       }
