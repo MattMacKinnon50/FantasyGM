@@ -192,7 +192,7 @@ class NewTradeForm extends Component {
     if (playerAssets.length > 0) {
       return playerAssets
     } else {
-      return (<li><p className="no-players">Add players to trade</p></li>)
+      return (<li><p className="no-players">Add Players</p></li>)
     }
   }
   buildTeam2ToTrade() {
@@ -220,7 +220,7 @@ class NewTradeForm extends Component {
     if (playerAssets.length > 0) {
       return playerAssets
     } else {
-      return (<li><p className="no-players">Add players to trade</p></li>)
+      return (<li><p className="no-players">Add Players</p></li>)
     }
   }
 
@@ -231,6 +231,7 @@ class NewTradeForm extends Component {
         <option key ={team["id"]} value={team["id"]}> {team["city"]} {team["name"]}</option>
       )
     })
+    options.unshift(<option value="" disabled selected>Select team</option>)
     return options
   }
 
@@ -286,41 +287,46 @@ class NewTradeForm extends Component {
 
 
   render() {
+    let currentTeam = this.state.currentTeam
+    let teamName
     let team1Assets = this.buildTeam1Available()
     let team2Assets = this.buildTeam2Available()
     let team1ToTrade = this.buildTeam1ToTrade()
     let team2ToTrade = this.buildTeam2ToTrade()
     let team1Img
     if (this.state.currentTeam) {
-      team1Img = <img className ="image-link" src={this.state.currentTeam["wikipedia_logo_url"]} alt={this.state.currentTeam["name"]}/>
+      team1Img = <img className ="trade-top-logo" src={this.state.currentTeam["wikipedia_logo_url"]} alt={this.state.currentTeam["name"]}/>
+      teamName = `${currentTeam["city"]} ${currentTeam["name"]}`
     }
     let team2Img
     if (this.state.otherTeam) {
-      team2Img = <img className ="image-link" src={this.state.otherTeam["wikipedia_logo_url"]} alt={this.state.otherTeam["name"]}/>
+      team2Img = <img className ="trade-top-logo" src={this.state.otherTeam["wikipedia_logo_url"]} alt={this.state.otherTeam["name"]}/>
     } else {
-      team2Img = <img className ="image-link" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png" alt="Select a Team"/>
+      team2Img = <img className ="trade-top-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png" alt="Select a Team"/>
     }
     let options = this.buildTeamDropdown()
     return (
       <div>
         <div className="row">
-          <div className="columns small-6">
+          <div className="columns small-6 trade-form-center">
             {team1Img}
           </div>
-          <div className="columns small-6">
+          <div className="columns small-6 trade-form-center">
             {team2Img}
           </div>
         </div>
-        <button className="roster-button" onClick={this.handleSubmit}>Submit Trade</button>
+        <div className="trade-button-container">
+          <button className="roster-button" onClick={this.handleSubmit}>Submit Trade</button>
+        </div>
         <hr/>
         <div className="row">
-          <h5>Players to Trade</h5>
-          <div className="columns small-6">
+          <h5 className="trade-form-center">Players to Trade</h5>
+          <div className="columns small-6 trade-asset-list ">
             <ul>
               {team1ToTrade}
             </ul>
           </div>
-          <div className="columns small-6">
+          <div className="columns small-6 trade-asset-list ">
             <ul>
               {team2ToTrade}
             </ul>
@@ -329,8 +335,9 @@ class NewTradeForm extends Component {
         <hr/>
         <div className="row">
           <div className="columns small-6">
-            <h5>Available Players</h5>
-            <ul>
+            <h4>{teamName}</h4>
+            <h5 id="team1-player-title">Available Players</h5>
+            <ul className="asset-select-list">
               {team1Assets}
             </ul>
           </div>
@@ -340,7 +347,8 @@ class NewTradeForm extends Component {
                 {options}
               </select>
             </form>
-            <ul>
+            <h5>Available Players</h5>
+            <ul className="asset-select-list">
               {team2Assets}
             </ul>
           </div>

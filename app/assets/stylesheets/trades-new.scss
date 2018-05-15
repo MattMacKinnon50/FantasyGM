@@ -1,0 +1,56 @@
+@import 'colors';
+
+.trade-asset-list {
+  height: 175px;
+  overflow: auto;
+  display: flex;                /* new */
+   justify-content: center;      /* new */
+   align-items: center;
+  list-style: none;
+    ul {
+      list-style: none;
+    }
+}
+
+.trade-asset {
+  list-style: none;
+}
+
+.no-players {
+
+}
+
+#team1-player-title {
+  padding-top: 1.05em;
+}
+
+
+.trade-button-container {
+  display: flex;                /* new */
+   justify-content: center;      /* new */
+   align-items: center;
+  padding-top: 2em
+}
+
+.trade-top-logo {
+  padding-top:1.3em;
+  max-width: 250px;
+  max-height: 150px;
+
+}
+
+.trade-form {
+  width: 85%;
+  margin: auto;
+}
+
+.trade-form-center {
+display: flex;                /* new */
+ justify-content: center;      /* new */
+ align-items: center;
+}
+
+.asset-select-list {
+  height:750px;
+  overflow: auto;
+}

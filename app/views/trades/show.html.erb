@@ -2,79 +2,87 @@
 <div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
 <div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
 <div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+  <%= link_to image_tag(@team.wikipedia_wordmark_url, :alt => @team.full_name, :title => @team.full_name, :class => "show-title"), @team %>
 </div>
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
 
 <div>
   <h3>Trades for Your Review</h3>
   <ul class="trade-list">
-    <% @review_trades.each do |trade| %>
-    <li class="trade-item">
-      <div class="row trade-team">
-        <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team1.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+    <% if @review_trades.length >0 %>
+      <% @review_trades.each do |trade| %>
+      <li class="trade-item">
+        <div class="row trade-team">
+          <div class= "columns small-6">
+            <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
+          </div>
+          <div class= "columns small-6">
+            <ul class="asset-list">
+              <% trade.team1_players.each do |player| %>
+                <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-        <div class= "columns small-6">
-          <ul class="asset-list">
-            <% trade.team1_players.each do |player| %>
-              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
-            <% end %>
-          </ul>
+        <hr/>
+        <div class="row trade-team">
+          <div class= "columns small-6">
+            <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
+          </div>
+          <div class= "columns small-6">
+            <ul class="asset-list">
+              <% trade.team2_players.each do |player| %>
+                <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
-      <hr/>
-      <div class="row trade-team">
-        <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team2.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
-        </div>
-        <div class= "columns small-6">
-          <ul class="asset-list">
-            <% trade.team2_players.each do |player| %>
-              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <%= link_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'} %>
-      <%= link_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'} %>
-    </li>
-  <% end %>
+        <%= link_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'} %>
+        <%= link_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'} %>
+      </li>
+    <% end %>
+    <% else %>
+      <li><p>No trade offers for review.</p></li>
+    <% end %>
   </ul>
 </div>
 
 <div>
   <h3>Your Pending Trade Offers</h3>
   <ul class="trade-list">
-    <% @pending_trades.each do |trade| %>
-    <li class="trade-item">
-      <div class="row trade-team">
-        <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team1.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+    <% if @pending_trades.length > 0 %>
+      <% @pending_trades.each do |trade| %>
+      <li class="trade-item">
+        <div class="row trade-team">
+          <div class= "columns small-6">
+            <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
+          </div>
+          <div class= "columns small-6">
+            <ul class="asset-list">
+              <% trade.team1_players.each do |player| %>
+                <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-        <div class= "columns small-6">
-          <ul class="asset-list">
-            <% trade.team1_players.each do |player| %>
-              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
-            <% end %>
-          </ul>
+        <hr/>
+        <div class="row trade-team">
+          <div class= "columns small-6">
+            <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
+          </div>
+          <div class= "columns small-6">
+            <ul class="asset-list">
+              <% trade.team2_players.each do |player| %>
+                <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
-      <hr/>
-      <div class="row trade-team">
-        <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team2.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
-        </div>
-        <div class= "columns small-6">
-          <ul class="asset-list">
-            <% trade.team2_players.each do |player| %>
-              <li> <%= link_to player.name, player %> - <%= player.position %> <%= player.nfl_team %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <%= link_to 'Rescind Trade Offer', trade, method: :delete, :data => {confirm: 'Are you sure you wish to cancel this trade?'} %>
-    </li>
-  <% end %>
+        <%= link_to 'Rescind Trade Offer', trade, method: :delete, :data => {confirm: 'Are you sure you wish to cancel this trade?'} %>
+      </li>
+      <% end %>
+    <% else %>
+      <li><p>No pending trade offers.</p></li>
+    <% end %>
   </ul>
 </div>

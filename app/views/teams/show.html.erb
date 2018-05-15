@@ -28,14 +28,14 @@
     </div>
   </div>
   <% if @current_user && @current_user.team_id == @team.id %>
-    <div class="row transaction-button-container">
+    <span class="transaction-button-container">
       <form class="button-form1" action='/teams/free_agents' >
           <input type="submit" class="button transaction-button" value="Add a Player"/>
       </form>
       <form class="button-form2" action=<%= trades_path %> >
           <input type="submit" class="button transaction-button" v value="View Trades"/>
       </form>
-    </div>
+    </span>
   <% end %>
   <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
 
