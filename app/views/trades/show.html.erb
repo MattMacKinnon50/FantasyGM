@@ -36,6 +36,8 @@
           </ul>
         </div>
       </div>
+      <%= link_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'} %>
+      <%= link_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'} %>
     </li>
   <% end %>
   </ul>
@@ -71,6 +73,7 @@
           </ul>
         </div>
       </div>
+      <%= link_to 'Rescind Trade Offer', trade, method: :delete, :data => {confirm: 'Are you sure you wish to cancel this trade?'} %>
     </li>
   <% end %>
   </ul>
