@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'user views a team index page' do
   let!(:team1) { FactoryBot.create(:team) }
   let!(:team2) { FactoryBot.create(:team, wikipedia_logo_url: 'https://upload.wikimedia.org/wikipedia/en/c/c1/Tennessee_Titans_logo.svg')  }
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user) { FactoryBot.create(:user, team_id: team1.id) }
 
 
   scenario 'not signed in user sees team index ' do
