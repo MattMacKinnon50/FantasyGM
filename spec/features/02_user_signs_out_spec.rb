@@ -11,6 +11,7 @@ feature 'user signs out', %Q{
   #   forgotten on the machine I'm using
 
   scenario 'authenticated user signs out' do
+    team = Team.create(:team)
     user = FactoryBot.create(:user)
 
     visit new_user_session_path
