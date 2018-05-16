@@ -14,7 +14,8 @@ class NewTradeForm extends Component {
       otherTeamId: "",
       otherTeam: null,
       currentTeamAssets: [],
-      otherTeamAssets: []
+      otherTeamAssets: [],
+      message: ""
     }
     this.getCookie = this.getCookie.bind(this)
     this.triggerFetch = this.triggerFetch.bind(this)
@@ -26,6 +27,7 @@ class NewTradeForm extends Component {
     this.buildTeam2Available = this.buildTeam2Available.bind(this)
     this.buildTeam2ToTrade = this.buildTeam2ToTrade.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleMessageChange = this.handleMessageChange.bind(this)
   }
 
   componentDidMount() {
@@ -251,8 +253,13 @@ class NewTradeForm extends Component {
     })
   }
 
+  handleMessageChange(event) {
+    this.setState({message: event.target.value})
+  }
+
   handleSubmit(event) {
     event.preventDefault()
+    let message = this.state.message
     let team1Id = this.state.currentTeamId
     let team2Id = this.state.otherTeamId
     let team1Assets = this.state.currentTeamAssets
@@ -263,7 +270,8 @@ class NewTradeForm extends Component {
       team1Id: team1Id,
       team2Id: team2Id,
       team1Assets: team1Assets,
-      team2Assets: team2Assets
+      team2Assets: team2Assets,
+      message: message
     }
     fetch('/api/v1/trades.json', {
       credentials: 'same-origin',
@@ -331,6 +339,13 @@ class NewTradeForm extends Component {
               {team2ToTrade}
             </ul>
           </div>
+        </div>
+        <hr/>
+        <div>
+          <form id="message-form">
+            <label className="message-label" name="message" type="text=field">Message:</label>
+          </form>
+            <textarea className="message" name="message" form="message-form" id="message" onChange={this.handleMessageChange} value={this.state.message}/>
         </div>
         <hr/>
         <div className="row">

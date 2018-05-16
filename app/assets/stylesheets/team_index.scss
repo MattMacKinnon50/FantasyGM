@@ -1,16 +1,16 @@
 .image-link {
   max-width: 150px;
   max-height: 100px;
-  display: block;
+  display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
 
 .team-list {
   list-style: none;
   max-width: 80%;
-  margin: 10%;
+  margin: 2em 10%;
 }
 
 .team-title {
@@ -20,4 +20,10 @@
 .logo  {
 text-align:center;
 padding:0;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

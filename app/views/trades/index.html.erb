@@ -17,12 +17,12 @@
   </span>
 <% end %>
 
-<div>
+<div class="trade-container">
   <ul class="trade-list">
     <% @trades.each do |trade| %>
     <li class="trade-item">
       <div class="row trade-team">
-        <div class= "columns small-6">
+        <div class= "columns small-6 image-container-trade">
           <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
         </div>
         <div class= "columns small-6">
@@ -35,7 +35,7 @@
       </div>
       <hr/>
       <div class="row trade-team">
-        <div class= "columns small-6">
+        <div class= "columns small-6 image-container-trade">
             <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
         </div>
         <div class= "columns small-6">

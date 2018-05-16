@@ -3,6 +3,10 @@
 .trade-logo {
   max-width: 150px;
   max-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3em;
 }
 
 .trade-item {
@@ -23,6 +27,7 @@
 
 .asset-list {
   list-style: none;
+  margin-bottom: 3em;
 }
 
 .asset-title {
@@ -47,4 +52,32 @@
 
 .right-button {
   margin-left: 0.1em
+}
+
+.image-container-trade{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right:15em;
+}
+
+.trade-container {
+  margin-top: 0.5em
+}
+
+.trade-message {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  max-width: 30em;
+  padding: 0.2em 1em;
+  min-width: 30em;
+  min-height: 2em;
+  margin-left: 2px;
+}
+
+.message-title {
+  display: flex;
+  justify-content: right;
+  padding-right: 1.25em;
 }

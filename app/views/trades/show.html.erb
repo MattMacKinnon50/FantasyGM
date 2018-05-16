@@ -13,7 +13,7 @@
       <% @review_trades.each do |trade| %>
       <li class="trade-item">
         <div class="row trade-team">
-          <div class= "columns small-6">
+          <div class= "columns small-6 image-container-trade">
             <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
           </div>
           <div class= "columns small-6">
@@ -26,7 +26,7 @@
         </div>
         <hr/>
         <div class="row trade-team">
-          <div class= "columns small-6">
+          <div class= "columns small-6 image-container-trade">
             <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
           </div>
           <div class= "columns small-6">
@@ -38,6 +38,10 @@
           </div>
         </div>
         <br/>
+        <div class="trade-show-title">
+          <h5>Message:</h5>
+          <p><%= trade.message %>
+        </div>
         <div class="trade-show-title">
           <%= button_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'}, class: "button transaction-button left-button" %>
           <%= button_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'}, class: "button transaction-button right-button" %>
@@ -80,6 +84,11 @@
               <% end %>
             </ul>
           </div>
+        </div>
+        <hr/>
+        <div class="trade-show-title">
+          <h5 class="message-title">Message:</h5>
+          <p class="trade-message"><%= trade.message %>
         </div>
         <div class="trade-show-title">
         <%= button_to 'Rescind Trade', trade, method: :delete, :data => {confirm: 'Are you sure you want to rescind this trade?'}, class: "button transaction-button right-button" %>
