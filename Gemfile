@@ -35,6 +35,7 @@ gem "active_model_serializers"
 
 group :development, :test do
 
+
 end
 
 group :development do
@@ -56,9 +57,9 @@ gem 'factory_bot', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
+gem "dotenv-rails"
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
-gem "dotenv-rails", groups: [:development, :test]
 gem "httpclient"
 gem "activesupport"
 
