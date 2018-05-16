@@ -62,6 +62,7 @@ gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
 gem "httpclient"
 gem "activesupport"
+gem "pry"
 
 group :test do
   gem 'coveralls', require: false
