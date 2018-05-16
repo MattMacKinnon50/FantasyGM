@@ -61,6 +61,7 @@ gem 'webpacker', '~> 3.3'
 gem "dotenv-rails", groups: [:development, :test]
 gem "httpclient"
 gem "activesupport"
+gem "heroku"
 
 group :test do
   gem 'coveralls', require: false
