@@ -1,18 +1,23 @@
 .image-link {
   max-width: 150px;
-  max-height: 125px
+  max-height: 100px;
+  display: block;
+  float: left;
+  align-content: center;
 }
+
 
 .team-list {
   list-style: none;
-  margin: 3%;
+  max-width: 80%;
+  margin: 10%;
 }
 
 .team-title {
   text-align: center;
 }
 
-.logo img {
-  display: block;
-  margin: 0 auto;
+.logo  {
+margin:0;
+padding:0;
 }

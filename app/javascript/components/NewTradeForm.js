@@ -320,7 +320,7 @@ class NewTradeForm extends Component {
         </div>
         <hr/>
         <div className="row">
-          <h5 className="trade-form-center">Players to Trade</h5>
+          <h5 className="trade-form-center asset-title">Players to Trade</h5>
           <div className="columns small-6 trade-asset-list ">
             <ul>
               {team1ToTrade}

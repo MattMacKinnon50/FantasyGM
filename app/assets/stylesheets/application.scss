@@ -16,7 +16,26 @@
 
  */
 
+@import 'colors';
+
  body {
    background-color: #F0F0F0;
    font-family: 'Open Sans', sans-serif;
  }
+
+ .flash {
+   background-color: $nfl-red;
+   padding: 0.4em 3em;
+   color: white;
+   font-size: 1.2em;
+   font-weight: bold;
+   height:2.2em;
+ }
+
+.top-bar {
+  background-color: $nfl-blue;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background-color: $nfl-blue;
+}

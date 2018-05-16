@@ -44,15 +44,13 @@
   </div>
 
 <% else %>
-<h1 class="FA-title">Free Agents</h1>
-
 <ul>
   <% @players.each do |player| %>
   <div class="free-agent-slot">
-    <li> <%= player.position %> # <%= player.number  %> - <%= link_to player.name, player %> </li>
     <% if current_user %>
-      <%= link_to "Add Player", player_add_path(player), method: :patch %>
+    <%= button_to 'Add Player', player_add_path(player), method: :patch, class: "button transaction-button add-player-button" %>
     <% end %>
+    <li class="player-details"> <%= link_to player.name, player %> - #<%= player.number  %> <%= player.position %> <% if player.nfl_team %><%= player.nfl_team %> <% else %> FA <% end %><% if player.bye_week %>- Bye Week: <%= player.bye_week %> <% end %></li>
   </div>
   <% end %>
 <% end %>

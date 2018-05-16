@@ -7,7 +7,7 @@
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
 
 <div>
-  <h3>Trades for Your Review</h3>
+  <h3 class="trade-show-title">Trades for Your Review</h3>
   <ul class="trade-list">
     <% if @review_trades.length >0 %>
       <% @review_trades.each do |trade| %>
@@ -37,18 +37,21 @@
             </ul>
           </div>
         </div>
-        <%= link_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'} %>
-        <%= link_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'} %>
+        <br/>
+        <div class="trade-show-title">
+          <%= button_to 'Accept Trade', trade, method: :patch, :data => {confirm: 'Are you sure you wish to accept this trade?'}, class: "button transaction-button left-button" %>
+          <%= button_to 'Reject Trade', trade, method: :delete, :data => {confirm: 'Are you sure you wish to reject this trade?'}, class: "button transaction-button right-button" %>
+        </div>
       </li>
     <% end %>
     <% else %>
-      <li><p>No trade offers for review.</p></li>
+      <li class="no-trades"><p>No trade offers for review.</p></li>
     <% end %>
   </ul>
 </div>
 
 <div>
-  <h3>Your Pending Trade Offers</h3>
+  <h3 class="trade-show-title">Your Pending Trade Offers</h3>
   <ul class="trade-list">
     <% if @pending_trades.length > 0 %>
       <% @pending_trades.each do |trade| %>
@@ -78,11 +81,13 @@
             </ul>
           </div>
         </div>
-        <%= link_to 'Rescind Trade Offer', trade, method: :delete, :data => {confirm: 'Are you sure you wish to cancel this trade?'} %>
+        <div class="trade-show-title">
+        <%= button_to 'Rescind Trade', trade, method: :delete, :data => {confirm: 'Are you sure you want to rescind this trade?'}, class: "button transaction-button right-button" %>
+        </div>
       </li>
       <% end %>
     <% else %>
-      <li><p>No pending trade offers.</p></li>
+      <li class="no-trades"><p>No pending trade offers.</p></li>
     <% end %>
   </ul>
 </div>

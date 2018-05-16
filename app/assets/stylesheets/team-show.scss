@@ -194,3 +194,23 @@ hr {
   margin-right:0.3em;
   margin-bottom:0.5em;
 }
+
+.free-agent-slot {
+  margin-left: 20%;
+  display:flex
+}
+
+.add-player-button {
+  padding-top:0.2em;
+  padding-bottom:0em;
+  padding-left: 1em;
+  padding-right: 1em;
+  display:table-cell;
+  vertical-align: middle;
+  margin: 0.25em 0.75em;
+  height:1.5em;
+}
+
+.player-details {
+  padding-top: 0.3em;
+}
