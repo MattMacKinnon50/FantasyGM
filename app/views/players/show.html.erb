@@ -1,4 +1,4 @@
-''<img src= <%= @player.photo_url %> alt= <%= @player.name %>/>
+<img src= <%= @player.photo_url %> alt= <%= @player.name %>/>
 <h2> <%= @player.name %> </h2>
 <h4> <%= @player.position %> - <%= @player.number %> - <%= @player.team.full_name %></h4>
 <h4> NFL Team: <% if @player.nfl_team %><%= @player.nfl_team %><% else %> None <% end %> </h4>
