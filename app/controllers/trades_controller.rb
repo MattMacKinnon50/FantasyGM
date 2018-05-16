@@ -1,7 +1,11 @@
 class TradesController < ApplicationController
   before_action :set_team
   def index
-    @current_team = Team.find(current_user.team_id)
+    if current_user
+      @current_team = Team.find(current_user.team_id)
+    else
+      @current_team = Team.find(33)
+    end
     @trades = Trade.all.reverse
   end
 

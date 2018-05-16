@@ -23,6 +23,10 @@
    font-family: 'Open Sans', sans-serif;
  }
 
+h1 h2 h3 h4 h5 h6 p a ul li{
+      font-family: 'Open Sans', sans-serif;
+ }
+
  .flash {
    background-color: $nfl-red;
    padding: 0.4em 3em;
@@ -34,8 +38,15 @@
 
 .top-bar {
   background-color: $nfl-blue;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.top-bar .title-area .name h1 a{
+  background-color: $nfl-blue;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
   background-color: $nfl-blue;
+     font-family: 'Open Sans', sans-serif;
 }

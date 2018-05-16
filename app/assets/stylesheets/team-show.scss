@@ -73,6 +73,7 @@
 
 .team-details-title {
   padding-top: 0.2em;
+ font-family: 'Open Sans', sans-serif;
 }
 
 .line-break {
@@ -86,25 +87,30 @@
   margin-left:1em;
   cursor: pointer;
   box-shadow: 0 6px #999;
+ font-family: 'Open Sans', sans-serif;
 }
 
 .roster-button:hover {
   background-color: $nfl-red;
+     font-family: 'Open Sans', sans-serif;
 }
 
  .roster-button:focus {
    background-color: $nfl-blue;
    outline:0;
+      font-family: 'Open Sans', sans-serif;
  }
 
 .roster-button:active {
   background-color: $nfl-red;
   box-shadow: 0 2px #666;
   transform: translateY(4px);
+     font-family: 'Open Sans', sans-serif;
 }
 
 .roster-title {
   margin-bottom:1em;
+ font-family: 'Open Sans', sans-serif;
 }
 
 .player-dropdown {
@@ -166,6 +172,7 @@ hr {
   display: inline-flex;
   width: 50%;
   margin: 0.25em 35%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .transaction-button {
@@ -173,21 +180,28 @@ hr {
   // border-radius: 4px;
   cursor: pointer;
   box-shadow: 0 6px #999;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .transaction-button:hover {
   background-color: $nfl-red;
+  font-family: 'Open Sans', sans-serif;
+
 }
 
  .transaction-button:focus {
    background-color: $nfl-blue;
    outline:0;
+   font-family: 'Open Sans', sans-serif;
+
  }
 
 .transaction-button:active {
   background-color: $nfl-red;
   box-shadow: 0 2px #666;
   transform: translateY(4px);
+  font-family: 'Open Sans', sans-serif;
+
 }
 
 .button-form1 {

@@ -14,6 +14,7 @@ class Api::V1::TradesController < ApplicationController
     trade.team2_id = params["team2Id"]
     trade.team1_assets = params["team1Assets"]
     trade.team2_assets = params["team2Assets"]
+    trade.message = params["message"]
     trade.save
   end
 

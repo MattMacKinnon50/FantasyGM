@@ -19,6 +19,15 @@
       </li>
     </ul>
 
+    <% if current_user %>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href= <%= team_path(current_user.team) %> >My Team</a></h1>
+      </li>
+    </ul>
+    <% end %>
+
+
     <ul class="title-area">
       <li class="name">
         <h1><a href= <%= teams_path %> >Teams</a></h1>

@@ -64,9 +64,13 @@ abbr_array.each do |org|
   data.each do |player|
     stats17 = nil
     statsppr17 = nil
+    ps_eligibility = false
     if player["PlayerSeason"] != nil
       stats17 = player["PlayerSeason"]["FantasyPoints"]
       statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
+    end
+    if player["experience"] <= 2
+      ps_eligibility = true
     end
 
     Player.create!(
@@ -100,15 +104,11 @@ abbr_array.each do |org|
       yahoo_player_id: player["YahooPlayerID"],
       fantasydraft_player_id: player["FantasyDraftPlayerID"],
       fantasy_stats_2017: stats17,
-      fantasy_stats_ppr_2017: statsppr17
+      fantasy_stats_ppr_2017: statsppr17,
+      ps_eligibility: ps_eligibility
     )
   end
 
-  ps = Player.where("experience <= 2")
-  ps.each do |player|
-    player.ps_eligibility = true
-    player.save
-  end
 end
 
 admin = User.create(

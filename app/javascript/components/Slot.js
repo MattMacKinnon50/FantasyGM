@@ -45,7 +45,10 @@ const Slot = props => {
     } else {
         return (
         <li className= {props.className}>
-          <p>{props.positionName} - Empty Roster Spot </p>
+          <span className="slot-data">
+            <p className="slot-label">{props.positionName}</p>
+            <p className="slot-player">Empty Roster Spot </p>
+          </span>
         </li>
         )
       }
