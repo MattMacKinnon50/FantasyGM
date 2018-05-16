@@ -1,6 +1,7 @@
 class TradesController < ApplicationController
   before_action :set_team
   def index
+    @current_team = Team.find(current_user.team_id)
     @trades = Trade.all.reverse
   end
 
@@ -12,11 +13,6 @@ class TradesController < ApplicationController
 
   def new
     @current_team = Team.find(current_user.team_id)
-    @teams = Team.where.not("id = 33 OR id = ?", @current_team.id )
-    @team_options = []
-    @teams.each do |team|
-      @team_options << [team.full_name, team.id]
-    end
   end
 
   def update

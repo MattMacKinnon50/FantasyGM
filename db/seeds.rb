@@ -36,6 +36,13 @@ data.each do |team|
   )
 end
 
+mia = Team.find(19)
+sea = Team.find(28)
+mia.wikipedia_logo_url = "https://vignette.wikia.nocookie.net/logopedia/images/3/37/Miami_Dolphins_logo.svg/revision/latest?cb=20130822155430"
+sea.wikipedia_logo_url = "http://www.freelogovectors.net/wp-content/uploads/2018/03/seattle_seahawks_logo.png"
+mia.save
+sea.save
+
 fa = Team.create(
   abbr: "FA",
   city: "Free",
@@ -108,5 +115,6 @@ admin = User.create(
   email: "admin@fakeemail.com",
   password: "password",
   password_confirmation: "password",
-  team_id: 21
+  team_id: 21,
+  admin: true
 )

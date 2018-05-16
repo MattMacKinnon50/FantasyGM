@@ -7,7 +7,7 @@ const Asset = props => {
       <li className= "trade-asset">
         <form>
           <div className="bench-buttons">
-            <label><input className= "player-asset" name="trade-player" type="checkbox" onChange={() => {props.toggleTrade(props.team, props.playerId)}} value={props.playerId}/> #{props.number} {props.playerFirstName} {props.playerLastName} - {props.position} - Bye Week: {props.byeWeek}</label>
+            <label><input className= "player-asset" name="trade-player" type="checkbox" onChange={() => {props.toggleTrade(props.team, props.playerId)}} value={props.playerId}/> {props.playerFirstName} {props.playerLastName} - #{props.number} {props.position} {props.playerNflTeam}- Bye Week: {props.byeWeek}</label>
           </div>
         </form>
       </li>

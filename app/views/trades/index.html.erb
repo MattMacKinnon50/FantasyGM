@@ -1,6 +1,20 @@
-<% if current_user %>
-<%= link_to "Make a new Trade", new_trade_path %>
-<%= link_to "View My Pending Trades", "/teams/#{current_user.team_id}/trades/1" %>
+<div class="stripe" style="background-color:#<%= @current_team.primary_color %>;background-image:linear-gradient(to right,#<%= @current_team.primary_color %>,#<%= @current_team.secondary_color %> 100%);"></div>
+<div class="stripe" style="background-color:#<%= @current_team.primary_color %>;background-image:linear-gradient(to right,#<%= @current_team.primary_color %>,#<%= @current_team.secondary_color %> 27%);"></div>
+<div class="stripe" style="background-color:#<%= @current_team.primary_color %>;background-image:linear-gradient(to right,#<%= @current_team.primary_color %>,#<%= @current_team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:#<%= @current_team.secondary_color %>">
+  <%= link_to image_tag(@current_team.wikipedia_wordmark_url, :alt => @current_team.full_name, :title => @current_team.full_name, :class => "show-title"), @current_team %>
+</div>
+<div class="line-break" style="background-color: #<%= @current_team.primary_color %>"></div>
+
+<% if @current_user  %>
+  <span class="transaction-button-container">
+    <form class="button-form1" action=<%=new_trade_path %>>
+        <input type="submit" class="button transaction-button" value="Propose a New Trade"/>
+    </form>
+    <form class="button-form2" action="/teams/<%= current_user.team_id %>/trades/1" >
+        <input type="submit" class="button transaction-button" v value="View My Pending Trades"/>
+    </form>
+  </span>
 <% end %>
 
 <div>
@@ -9,7 +23,7 @@
     <li class="trade-item">
       <div class="row trade-team">
         <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team1.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+          <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
         </div>
         <div class= "columns small-6">
           <ul class="asset-list">
@@ -22,7 +36,7 @@
       <hr/>
       <div class="row trade-team">
         <div class= "columns small-6">
-          <img class= "trade-logo" src= <%= trade.team2.wikipedia_logo_url %> alt= <%= trade.team1.full_name %>/>
+            <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
         </div>
         <div class= "columns small-6">
           <ul class="asset-list">
