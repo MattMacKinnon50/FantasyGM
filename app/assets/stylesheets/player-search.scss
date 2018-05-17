@@ -1,0 +1,23 @@
+@import 'colors';
+
+.player-search-result {
+  border:8px;
+  border-style: solid;
+  margin: 2px;
+  max-width: 30%;
+  background-color: white;
+  }
+
+.search-results {
+  width:100%;
+  margin:1%;
+  padding-left:6%;
+}
+
+.player-search-picture {
+  width: 97px;
+  height: 135px;
+  background: #FFFFFF99;
+  border: 3px;
+  border-style: solid;
+}

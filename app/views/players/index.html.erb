@@ -1,0 +1,23 @@
+<div class="search-page"</div>
+<% if @results %>
+  <ul class="small-block-grid-2 medium-block-grid-3 search-results">
+  <% @results.each do |player| %>
+    <li class="player-search-result" style="border-color:#<%= player.team.primary_color %>; background-color:#<%= player.team.secondary_color %>30">
+      <div class="player-show-top">
+        <img class="player-search-picture" style="border-color:#<%= player.team.primary_color %>" src= <%= player.photo_url %> alt= <%= player.name %>/>
+        <div class="player-show-top-left">
+          <h4><%= link_to player.name, player %></h4>
+          <h4> #<%= player.number %><% if player.position %> - <%= player.full_position %> <% end %> </h4>
+          <h5> Current Team: <%= player.team.full_name %></h5>
+        </div>
+      </div>
+      <h5> NFL Team: <% if player.nfl_team %><%= player.nfl_team %><% else %> None <% end %> </h5>
+      <h5>2017 Fantasy Scoring (Standard): <% if player.fantasy_stats_2017 %><%= player.fantasy_stats_2017 %><% else %>N/A<% end %></h5>
+      <h5>2017 Fantasy Points (PPR): <% if player.fantasy_stats_ppr_2017 %><%= player.fantasy_stats_ppr_2017 %><% else %>N/A<% end %></h5>
+    </li>
+    <% end %>
+  </ul>
+<% else %>
+<h3>  Please enter your search in the field above to find players. </h3>
+<% end %>
+</div>

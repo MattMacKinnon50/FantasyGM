@@ -1,5 +1,9 @@
 class PlayersController < ApplicationController
   def index
+    @search_terms = params[:name]
+    if @search_terms && @search_terms != "" 
+      @results = Player.search_by_full_name(@search_terms)
+    end
   end
 
   def show
