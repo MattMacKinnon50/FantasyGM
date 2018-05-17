@@ -9,8 +9,24 @@
   vertical-align: middle;
 }
 
-.stripe {
+.stripe1 {
   height: 5em;
+  width:100%
+}
+
+.stripe2 {
+  height: 5em;
+  position: absolute;
+  top: 7.8em;
+  left:0em;
+  width:100%
+}
+.stripe3 {
+  height: 5em;
+  position: absolute;
+  top: 12.8em;
+  left:0em;
+  width:100%
 }
 
 .team-img-frame {
@@ -77,6 +93,14 @@
 }
 
 .line-break {
+  height:0.5em;
+  position: absolute;
+  top: 17.8em;
+  left: 0em;
+  width:100%;
+}
+
+.line-break-bottom {
   height:0.5em;
 }
 
@@ -255,4 +279,9 @@ hr {
   font-size: 2.5em;
   color: $nfl-blue;
 
+}
+
+#header-spacer {
+  height:13.3em;
+  width:100%
 }

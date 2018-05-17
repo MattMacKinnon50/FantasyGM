@@ -1,16 +1,17 @@
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="player-img-frame" style="border-color:#<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @player.photo_url%> alt= <%= @player.name %> />
+  <h5 id="player-name"><%= @player.name %></h5>
 </div>
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
-
+<div id="header-spacer"> </div>
 
 <img src= <%= @player.photo_url %> alt= <%= @player.name %>/>
 <h2> <%= @player.name %> </h2>
 <h4> <%= @player.position %> - <%= @player.number %> - <%= @player.team.full_name %></h4>
 <h4> NFL Team: <% if @player.nfl_team %><%= @player.nfl_team %><% else %> None <% end %> </h4>
-<% if current_user && @player.team_id = "33"%>
-  <%= link_to "Add Player", player_add_path(@player), method: :patch %>
+<% if current_user && @player.team_id == 33%>
+  <%= button_to 'Add Player', player_add_path(@player), method: :patch, class: "button transaction-button add-player-button" %>
 <% end %>
