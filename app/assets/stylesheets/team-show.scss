@@ -211,7 +211,8 @@ hr {
 
 .free-agent-slot {
   margin-left: 20%;
-  display:flex
+  display:flex;
+  padding-top:0.3em
 }
 
 .add-player-button {
@@ -221,10 +222,37 @@ hr {
   padding-right: 1em;
   display:table-cell;
   vertical-align: middle;
-  margin: 0.25em 0.75em;
+  margin: 1em 2.5em;
   height:1.5em;
+  box-shadow: 0 0px #999;
 }
 
-.player-details {
-  padding-top: 0.3em;
+.player-details p {
+  font-size: 1.25em;
+    a {
+      font-size: 1.5em;
+      color:$nfl-red
+    }
+}
+
+.free-agent-list {
+  list-style: none;
+  max-height: 750px;
+  overflow: auto;
+  border: 2px;
+  border-style: solid;
+  border-color: $nfl-blue;
+  max-width: 60%;
+  margin: auto;
+  margin-top: 1.5em;
+  display: block
+}
+
+.fa-title {
+  margin:auto;
+  text-align:center;
+  margin-top:0.5em;
+  font-size: 2.5em;
+  color: $nfl-blue;
+
 }

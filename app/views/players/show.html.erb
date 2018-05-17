@@ -1,3 +1,12 @@
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+</div>
+<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+
+
 <img src= <%= @player.photo_url %> alt= <%= @player.name %>/>
 <h2> <%= @player.name %> </h2>
 <h4> <%= @player.position %> - <%= @player.number %> - <%= @player.team.full_name %></h4>
