@@ -46,6 +46,13 @@
       </li>
     </ul>
 
+    <section class="search-field float-menu">
+      <%= form_tag("/players", method: "get", class: "search-bar") do %>
+        <%= text_field_tag :name, params[:name] %>
+        <%= submit_tag 'Search Players', name: nil, class: 'search-button' %>
+      <% end %>
+    </section>
+
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>

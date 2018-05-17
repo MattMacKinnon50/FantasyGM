@@ -69,7 +69,7 @@ abbr_array.each do |org|
       stats17 = player["PlayerSeason"]["FantasyPoints"]
       statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
     end
-    if player["experience"] <= 2
+    if player["experience"] && player["experience"] <= 2
       ps_eligibility = true
     end
 
