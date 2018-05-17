@@ -50,7 +50,7 @@
     vertical-align: middle;
 }
 
-.show-body {
+.team-show-container {
   padding:2em;
 }
 
@@ -70,13 +70,15 @@
 
 #bench {
   list-style: none;
-  height: 1000px;
+  min-height: 100px;
+  max-height: 1000px;
   overflow: auto;
 }
 
 #ps {
   list-style: none;
-  height: 1000px;
+  min-height: 100px;
+  max-height: 1000px;
   overflow: auto;
 }
 
