@@ -13,16 +13,37 @@
   white-space: nowrap;
   text-align: center; margin: 1em 0;
   display:flex;
-    img {
-      margin-right: 1em;
-      margin-left: 1em;
-    }
 }
 
 #player-name {
   height:auto;
-  min-height:100%;
   text-align:center;
-  display:inline-flex;
-  padding:30% 0em;
+  display:block;
+  font-size: 1.35em;
+  margin-bottom:0.2em;
+  margin-right: 0em;
+  margin-left: 1em;
+}
+
+#player-show-picture {
+  display: flex;
+  vertical-align: middle;
+  border: 3px;
+  border-style:solid;
+  padding: 0;
+  max-width: 250px;
+  max-height: 90px;
+  width:auto;
+  height:auto;
+  margin:auto;
+  margin-left: 1em;
+}
+
+.player-name-container {
+    display:block;
+    margin-top:1.45em;
+}
+.show-wordmark {
+  width: 70%;
+  padding-left:0
 }

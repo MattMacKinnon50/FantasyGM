@@ -16,4 +16,13 @@ class PlayersController < ApplicationController
     redirect_back(fallback_location: "/teams/33")
   end
 
+  def drop
+    player = Player.find(params["player_id"])
+    team = Team.find(33)
+    player.team = team
+    player.save
+    flash[:notice] = "#{player.name} released to Free Agency."
+    redirect_back(fallback_location: "/teams/#{current_user.team_id}")
+  end
+
 end

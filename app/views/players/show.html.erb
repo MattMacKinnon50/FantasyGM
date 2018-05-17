@@ -2,8 +2,11 @@
 <div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
 <div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
 <div class="player-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @player.photo_url%> alt= <%= @player.name %> />
-  <h5 id="player-name"><%= @player.name %></h5>
+    <img id="player-show-picture" src="<%= @player.photo_url%>" style="border-color:#<%=@team.primary_color%>" alt=<%= @player.name %> />
+  <div class="player-name-container">
+    <h5 id="player-name"><%= @player.name %></h5>
+    <img class="show-wordmark" src="<%= @team.wikipedia_wordmark_url%>" alt=<%= @team.full_name %> />
+  </div>
 </div>
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
 <div id="header-spacer"> </div>
@@ -14,4 +17,8 @@
 <h4> NFL Team: <% if @player.nfl_team %><%= @player.nfl_team %><% else %> None <% end %> </h4>
 <% if current_user && @player.team_id == 33%>
   <%= button_to 'Add Player', player_add_path(@player), method: :patch, class: "button transaction-button add-player-button" %>
+<% elsif current_user && @player.team_id == current_user.team_id%>
+  <%= button_to 'Release Player', player_drop_path(@player), method: :delete, class: "button transaction-button add-player-button" %>
+<% elsif current_user %>
+  <%= button_to 'Trade for Player', '/trades/new', method: :get, class: "button transaction-button add-player-button" %>
 <% end %>
