@@ -47,3 +47,57 @@
   width: 70%;
   padding-left:0
 }
+
+.player-title {
+text-align: center;
+}
+
+.button-container {
+  display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.player-show-body {
+  margin:5%;
+  margin-top: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+  border:5px;
+  border-style: solid;
+  background-color: #F0F0F099;
+
+}
+
+.player-show-container {
+  padding:2em;
+  min-height: 69vh;
+}
+
+.player-show-top {
+  display: flex;
+  margin-top:1.2em;
+  margin-bottom: .5em;
+}
+
+.player-picture-body {
+  width: 97px;
+  height: 135px;
+  background: #FFFFFF99;
+  border: 2px;
+  border-style: solid;
+}
+
+.player-show-top-left {
+  padding-left: 2em;
+}
+
+.player-show-details {
+  background-color: #FFFFFF50;
+  border: 1px;
+  border-color: #FFFFFF75;
+  border-style: solid;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 2em;
+}
