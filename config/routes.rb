@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :players do
     patch :add
+    delete :drop
   end
 
   resources :trades

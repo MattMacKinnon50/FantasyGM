@@ -1,10 +1,11 @@
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
 <div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
   <%= link_to image_tag(@team.wikipedia_wordmark_url, :alt => @team.full_name, :title => @team.full_name, :class => "show-title"), @team %>
 </div>
 <div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div id="header-spacer"> </div>
 
 <div>
   <h3 class="trade-show-title">Trades for Your Review</h3>
@@ -99,4 +100,7 @@
       <li class="no-trades"><p>No pending trade offers.</p></li>
     <% end %>
   </ul>
+</div>
+<div class="transaction-button-container">
+    <%= button_to 'Propose a New Trade', new_trade_path, class: "button transaction-button" %>
 </div>
