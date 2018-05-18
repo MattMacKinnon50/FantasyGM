@@ -114,9 +114,25 @@ abbr_array.each do |org|
 end
 
 admin = User.create(
-  email: "admin@fakeemail.com",
+  email: "admin@email.com",
   password: "password",
   password_confirmation: "password",
   team_id: 21,
   admin: true
 )
+
+user_teams = []
+teams.each do |team|
+  if team.abbr != "FA"
+    user_teams << [team.name, team.id]
+  end
+end
+
+user_teams.each do |team|
+  User.create(
+    email: "#{team[0]}GM@email.com",
+    password: "password",
+    password_confirmation: "password",
+    team_id: team[1]
+  )
+end
