@@ -7,7 +7,7 @@ uri = URI('https://api.fantasydata.net/v3/nfl/stats/JSON/Teams')
 
 request = Net::HTTP::Get.new(uri.request_uri)
 # Request headers
-request['Ocp-Apim-Subscription-Key'] = '4c53b2b9f2324c86a1cf1f7acaae24be'
+request['Ocp-Apim-Subscription-Key'] = ENV['FANTASY_DATA_API_TOKEN']
 request.body = "{body}"
 
 response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
@@ -57,7 +57,7 @@ teams.each do |team|
 
   request = Net::HTTP::Get.new(uri.request_uri)
   # Request headers
-  request['Ocp-Apim-Subscription-Key'] = '4c53b2b9f2324c86a1cf1f7acaae24be'
+  request['Ocp-Apim-Subscription-Key'] = ENV['FANTASY_DATA_API_TOKEN']
   request.body = "{body}"
 
   response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
@@ -69,14 +69,14 @@ teams.each do |team|
   File.open("./app/builders/rosters/#{team}.json", 'w') { |file| file.write(data) }
 end
 
-uri3 = URI("https://api.fantasydata.net/v3/nfl/stats/JSON/FreeAgents")
+uri = URI("https://api.fantasydata.net/v3/nfl/stats/JSON/FreeAgents")
 
 request = Net::HTTP::Get.new(uri.request_uri)
 # Request headers
-request['Ocp-Apim-Subscription-Key'] = '4c53b2b9f2324c86a1cf1f7acaae24be'
+request['Ocp-Apim-Subscription-Key'] = ENV['FANTASY_DATA_API_TOKEN']
 request.body = "{body}"
 
-response = Net::HTTP.start(uri3.host, uri3.port, :use_ssl => uri3.scheme == 'https') do |http|
+response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
     http.request(request)
 end
 
