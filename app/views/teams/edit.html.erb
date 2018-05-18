@@ -12,6 +12,25 @@
       <%= f.text_field :name %>
     </div>
 
+    <div class="field">
+      <%= f.label :logo %><br />
+      <%= f.file_field :logo %>
+    </div>
+
+    <div class="field">
+      <%= f.label :wordmark %><br />
+      <%= f.file_field :wordmark %>
+    </div>
+
+    <div class="field">
+      <%= f.label :primary_color %><br />
+      <%= f.color_field :primary_color %>
+    </div>
+
+    <div class="field">
+      <%= f.label :secondary_color %><br />
+      <%= f.color_field :secondary_color %>
+    </div>
 
     <div class="field">
       <%= f.label :head_coach %><br />
@@ -48,7 +67,7 @@
 
     <div class="field">
       <%= f.label :stadium_state %><br />
-      <%= f.text_field :stadium_state %>
+      <%= f.select :stadium_state, @states%>
     </div>
 
     <div class="field">
@@ -58,18 +77,9 @@
 
     <div class="field">
       <%= f.label :stadium_playing_surface %><br />
-      <%= f.text_field :stadium_playing_surface %>
+      <%= f.select :stadium_playing_surface, @surfaces %>
     </div>
 
-    <div class="field">
-      <%= f.label :primary_color %><br />
-      <%= f.color_field :primary_color %>
-    </div>
-
-    <div class="field">
-      <%= f.label :secondary_color %><br />
-      <%= f.color_field :secondary_color %>
-    </div>
 
     <div>
         <%= f.submit %>

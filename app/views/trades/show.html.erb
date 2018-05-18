@@ -1,10 +1,10 @@
-<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <%= link_to image_tag(@team.wikipedia_wordmark_url, :alt => @team.full_name, :title => @team.full_name, :class => "show-title"), @team %>
+<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
+  <%= link_to image_tag(@team.wordmark.url, :alt => @team.full_name, :title => @team.full_name, :class => "show-title"), @team %>
 </div>
-<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
 <div id="header-spacer"> </div>
 
 <div>
@@ -15,7 +15,7 @@
       <li class="trade-item">
         <div class="row trade-team">
           <div class= "columns small-6 image-container-trade">
-            <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
+            <%= link_to image_tag(trade.team1.logo.url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
           </div>
           <div class= "columns small-6">
             <ul class="asset-list">
@@ -28,7 +28,7 @@
         <hr/>
         <div class="row trade-team">
           <div class= "columns small-6 image-container-trade">
-            <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
+            <%= link_to image_tag(trade.team2.logo.url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
           </div>
           <div class= "columns small-6">
             <ul class="asset-list">
@@ -63,7 +63,7 @@
       <li class="trade-item">
         <div class="row trade-team">
           <div class= "columns small-6">
-            <%= link_to image_tag(trade.team1.wikipedia_logo_url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
+            <%= link_to image_tag(trade.team1.logo.url, :alt => trade.team1.full_name, :title => trade.team1.full_name, :class => "trade-logo"), trade.team1 %>
           </div>
           <div class= "columns small-6">
             <ul class="asset-list">
@@ -76,7 +76,7 @@
         <hr/>
         <div class="row trade-team">
           <div class= "columns small-6">
-            <%= link_to image_tag(trade.team2.wikipedia_logo_url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
+            <%= link_to image_tag(trade.team2.logo.url, :alt => trade.team2.full_name, :title => trade.team2.full_name, :class => "trade-logo"), trade.team2 %>
           </div>
           <div class= "columns small-6">
             <ul class="asset-list">

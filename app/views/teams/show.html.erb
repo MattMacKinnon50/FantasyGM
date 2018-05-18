@@ -1,10 +1,10 @@
-<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
 </div>
-<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
 <div id="header-spacer"> </div>
 
 <% if @team.id != 33 %>
@@ -38,17 +38,17 @@
       </form>
     </span>
   <% end %>
-  <div class="line-break-bottom" style="background-color: #<%= @team.primary_color %>"></div>
+  <div class="line-break-bottom" style="background-color: <%= @team.primary_color %>"></div>
 
-  <div class="team-show-container" style="background:#<%= @team.secondary_color %>;background-image:linear-gradient(90deg, #<%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, #<%= @team.primary_color %> 93%)" >
-    <div id='app' style="border-color:#<%=@team.primary_color%>"  class='react-div'></div>
+  <div class="team-show-container" style="background:<%= @team.secondary_color %>;background-image:linear-gradient(90deg, <%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, <%= @team.primary_color %> 93%)" >
+    <div id='app' style="border-color:<%=@team.primary_color%>"  class='react-div'></div>
   </div>
 
 <% else %>
 <h3 class="fa-title">Free Agents</h3>
-<div class="line-break-bottom" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break-bottom" style="background-color: <%= @team.primary_color %>"></div>
 
-<div class="team-show-container" style="background:#<%= @team.secondary_color %>;background-image:linear-gradient(90deg, #<%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, #<%= @team.primary_color %> 93%)" >
+<div class="team-show-container" style="background:<%= @team.secondary_color %>;background-image:linear-gradient(90deg, <%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, <%= @team.primary_color %> 93%)" >
 <ul class="free-agent-list">
   <% @players.each do |player| %>
   <div class="free-agent-slot">

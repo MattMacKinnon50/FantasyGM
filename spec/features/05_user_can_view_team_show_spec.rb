@@ -13,7 +13,7 @@ feature 'user views a team index page' do
   scenario 'not signed in user sees team show ' do
     visit "/teams/#{team.id}"
 
-    expect(page).to have_xpath("//img[@src= \"#{team.wikipedia_wordmark_url}\"]")
+    expect(page).to have_xpath("//img[@src= \"#{team.wordmark}\"]")
 
   end
 end

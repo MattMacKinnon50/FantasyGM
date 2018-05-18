@@ -13,8 +13,8 @@ FactoryBot.define do
     abbr 'JUN'
     city 'Juneau'
     name 'Huskies'
-    wikipedia_logo_url 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
-    wikipedia_wordmark_url 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
+    logo 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
+    wordmark 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
   end
 
   factory :player do

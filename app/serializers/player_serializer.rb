@@ -6,10 +6,10 @@ class PlayerSerializer < ActiveModel::Serializer
   end
 
   def primary_color
-    "background_color:#" + object.team.primary_color
+    "background_color:" + object.team.primary_color
   end
 
   def secondary_color
-    "background_color:#" + object.team.secondary_color
+    "background_color:" + object.team.secondary_color
   end
 end

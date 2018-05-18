@@ -21,12 +21,12 @@ data.each do |team|
     offensive_coordinator: team["OffensiveCoordinator"],
     defensive_coordinator: team["DefensiveCoordinator"],
     special_teams_coach: team["SpecialTeamsCoach"],
-    primary_color: team["PrimaryColor"],
-    secondary_color: team["SecondaryColor"],
-    tertiary_color: team["TertiaryColor"],
-    quaternary_color: team["QuaternaryColor"],
-    wikipedia_logo_url: team["WikipediaLogoUrl"],
-    wikipedia_wordmark_url: team["WikipediaWordMarkUrl"],
+    primary_color: "#" + team["PrimaryColor"],
+    secondary_color: "#" + team["SecondaryColor"],
+    tertiary_color: "#" + team["TertiaryColor"],
+    quaternary_color: "#" + team["QuaternaryColor"],
+    remote_logo_url: team["WikipediaLogoUrl"],
+    remote_wordmark_url: team["WikipediaWordMarkUrl"],
     stadium_name: team["StadiumDetails"]["Name"],
     stadium_city: team["StadiumDetails"]["City"],
     stadium_state: team["StadiumDetails"]["State"],
@@ -38,8 +38,8 @@ end
 
 mia = Team.find(19)
 sea = Team.find(28)
-mia.wikipedia_logo_url = "https://vignette.wikia.nocookie.net/logopedia/images/3/37/Miami_Dolphins_logo.svg/revision/latest?cb=20130822155430"
-sea.wikipedia_logo_url = "http://www.freelogovectors.net/wp-content/uploads/2018/03/seattle_seahawks_logo.png"
+mia.remote_logo_url = "https://vignette.wikia.nocookie.net/logopedia/images/3/37/Miami_Dolphins_logo.svg/revision/latest?cb=20130822155430"
+sea.remote_logo_url = "http://www.freelogovectors.net/wp-content/uploads/2018/03/seattle_seahawks_logo.png"
 mia.save
 sea.save
 
@@ -47,10 +47,10 @@ fa = Team.create(
   abbr: "FA",
   city: "Free",
   name: "Agent",
-  wikipedia_logo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/358px-National_Football_League_logo.svg.png",
-  wikipedia_wordmark_url: "https://i2.wp.com/copelandcoaching.com/wp-content/uploads/2015/10/image.jpeg",
-  primary_color: "233E6F",
-  secondary_color: "D30614")
+  remote_logo_url: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/358px-National_Football_League_logo.svg.png",
+  remote_wordmark_url: "https://i2.wp.com/copelandcoaching.com/wp-content/uploads/2015/10/image.jpeg",
+  primary_color: "#233E6F",
+  secondary_color: "#D30614")
 teams = Team.all
 abbr_array = []
 

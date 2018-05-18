@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_16_200520) do
+ActiveRecord::Schema.define(version: 2018_05_18_154933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,8 +66,6 @@ ActiveRecord::Schema.define(version: 2018_05_16_200520) do
     t.string "secondary_color"
     t.string "tertiary_color"
     t.string "quaternary_color"
-    t.string "wikipedia_logo_url"
-    t.string "wikipedia_wordmark_url"
     t.string "stadium_name"
     t.string "stadium_city"
     t.string "stadium_state"
@@ -76,6 +74,8 @@ ActiveRecord::Schema.define(version: 2018_05_16_200520) do
     t.string "stadium_playing_surface"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo"
+    t.string "wordmark"
   end
 
   create_table "trades", force: :cascade do |t|
