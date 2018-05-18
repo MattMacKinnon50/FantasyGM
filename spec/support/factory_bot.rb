@@ -9,12 +9,15 @@ FactoryBot.define do
     team_id '1'
   end
 
+sample_photo = 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
+
+
   factory :team do
     abbr 'JUN'
     city 'Juneau'
     name 'Huskies'
-    wikipedia_logo_url 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
-    wikipedia_wordmark_url 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bears_logo.svg'
+    remote_logo_url sample_photo
+    remote_wordmark_url sample_photo
   end
 
   factory :player do

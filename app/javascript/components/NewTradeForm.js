@@ -303,12 +303,12 @@ class NewTradeForm extends Component {
     let team2ToTrade = this.buildTeam2ToTrade()
     let team1Img
     if (this.state.currentTeam) {
-      team1Img = <img className ="trade-top-logo" src={this.state.currentTeam["wikipedia_logo_url"]} alt={this.state.currentTeam["name"]}/>
+      team1Img = <img className ="trade-top-logo" src={this.state.currentTeam["logo"].url} alt={this.state.currentTeam["name"]}/>
       teamName = `${currentTeam["city"]} ${currentTeam["name"]}`
     }
     let team2Img
     if (this.state.otherTeam) {
-      team2Img = <img className ="trade-top-logo" src={this.state.otherTeam["wikipedia_logo_url"]} alt={this.state.otherTeam["name"]}/>
+      team2Img = <img className ="trade-top-logo" src={this.state.otherTeam["logo"].url} alt={this.state.otherTeam["name"]}/>
     } else {
       team2Img = <img className ="trade-top-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png" alt="Select a Team"/>
     }

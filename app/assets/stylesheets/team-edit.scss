@@ -1,0 +1,56 @@
+@import 'colors';
+
+.field {
+  margin-left: 2%;
+  margin-right: 2%;
+  max-width: 30em;
+}
+
+.offensive {
+  max-width: 29em;
+  width: 100%;
+}
+.city {
+  margin-right: 0;
+
+  max-width:24em;
+  min-width:15em;
+}
+.state {
+  margin-left: 1%;
+  padding-left: 0;
+  margin-right: 0;
+  max-width:5em;
+  min-width:3em;
+}
+.form-box-city-state {
+  display:flex;
+  width:100%;
+  margin-right:0;
+}
+
+.team-form {
+  width:85%;
+  padding-left:12% ;
+  margin: auto;
+}
+
+.edit-title {
+  margin:auto;
+  text-align:center;
+  margin-top:0.1em;
+  padding: 0;
+  font-size: 2.5em;
+  color: $nfl-blue;
+}
+
+.form-box {
+  display: flex;
+  width:85%;
+}
+
+.team-form-container {
+  width:85%;
+  margin:auto;
+
+}

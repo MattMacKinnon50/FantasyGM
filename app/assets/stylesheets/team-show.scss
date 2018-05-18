@@ -88,10 +88,12 @@
 }
 .team-details {
   list-style: none;
+  padding-left: 20%;
 }
 
 .team-details-title {
   padding-top: 0.2em;
+  padding-left: 17%;
  font-family: 'Open Sans', sans-serif;
 }
 
@@ -295,4 +297,9 @@ hr {
   height:10.7em;
   width:100%;
   margin:0
+}
+
+.middle {
+  margin-left: 2em;
+  margin-right: 2em;
 }

@@ -1,15 +1,15 @@
-<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
 </div>
-<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
 <div id="header-spacer"> </div>
 
 <% if @team.id != 33 %>
-  <div class="row team-details-container">
-    <div class="columns small-6">
+  <div class="row">
+    <div class="columns small-6 team-details-container">
       <h5 class="team-details-title">Coaching Staff</h5>
       <ul class="team-details">
         <li>Head Coach: <%= @team.head_coach %></li>
@@ -18,7 +18,7 @@
         <li>Special Teams Coach: <%= @team.special_teams_coach %></li>
       </ul>
     </div>
-    <div class="columns small-6">
+    <div class="columns small-5 team-details-container">
       <h5 class="team-details-title">Stadium</h5>
       <ul class="team-details">
         <li><%= @team.stadium_name %></li>
@@ -30,25 +30,22 @@
   </div>
   <% if @current_user && @current_user.team_id == @team.id %>
     <span class="transaction-button-container">
-      <form class="button-form1" action='/teams/free_agents' >
-          <input type="submit" class="button transaction-button" value="Add a Player"/>
-      </form>
-      <form class="button-form2" action=<%= trades_path %> >
-          <input type="submit" class="button transaction-button" v value="View Trades"/>
-      </form>
+      <%= button_to 'Add Player', '/teams/free_agents', method: :get, class: "button transaction-button" %>
+      <%= button_to 'View Trades', trades_path, method: :get, class: "button transaction-button middle" %>
+      <%= button_to 'Edit Team Details', edit_team_path(@team), method: :get, class: "button transaction-button" %>
     </span>
   <% end %>
-  <div class="line-break-bottom" style="background-color: #<%= @team.primary_color %>"></div>
+  <div class="line-break-bottom" style="background-color: <%= @team.primary_color %>"></div>
 
-  <div class="team-show-container" style="background:#<%= @team.secondary_color %>;background-image:linear-gradient(90deg, #<%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, #<%= @team.primary_color %> 93%)" >
-    <div id='app' style="border-color:#<%=@team.primary_color%>"  class='react-div'></div>
+  <div class="team-show-container" style="background:<%= @team.secondary_color %>;background-image:linear-gradient(90deg, <%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, <%= @team.primary_color %> 93%)" >
+    <div id='app' style="border-color:<%=@team.primary_color%>"  class='react-div'></div>
   </div>
 
 <% else %>
 <h3 class="fa-title">Free Agents</h3>
-<div class="line-break-bottom" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break-bottom" style="background-color: <%= @team.primary_color %>"></div>
 
-<div class="team-show-container" style="background:#<%= @team.secondary_color %>;background-image:linear-gradient(90deg, #<%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, #<%= @team.primary_color %> 93%)" >
+<div class="team-show-container" style="background:<%= @team.secondary_color %>;background-image:linear-gradient(90deg, <%= @team.secondary_color %> 7%, rgba(255,255,255,1) 50%, <%= @team.primary_color %> 93%)" >
 <ul class="free-agent-list">
   <% @players.each do |player| %>
   <div class="free-agent-slot">

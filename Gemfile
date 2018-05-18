@@ -63,6 +63,8 @@ gem 'webpacker', '~> 3.3'
 gem "httpclient"
 gem "activesupport"
 gem "pry"
+gem "carrierwave"
+gem "fog"
 
 group :test do
   gem 'coveralls', require: false

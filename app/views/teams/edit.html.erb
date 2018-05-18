@@ -1,0 +1,123 @@
+<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
+</div>
+<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
+<div id="header-spacer"> </div>
+
+<div class="team-form-container">
+  <h1 class="edit-title">Rebrand Your Team</h1>
+  <div class="team-form"</div>
+    <%= form_for(@team) do |f| %>
+
+      <div class="form-box">
+        <div class="field">
+          <%= f.label :city %><br />
+          <%= f.text_field :city %>
+        </div>
+
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="form-box field">
+          <div>
+            <p>Current Logo</p>
+            <img class="image-link" src= <%= @team.logo%> alt= <%= @team.full_name %> %>
+          </div>
+          <div class="photo-field">
+            <%= f.label :logo, "Select New Logo" %><br />
+            <%= f.file_field :logo %>
+          </div>
+        </div>
+        <div class="form-box field">
+          <div>
+            <p>Current Wordmark</p>
+            <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
+          </div>
+          <div class="photo-field">
+            <%= f.label :wordmark, "Select New Wordmark" %><br />
+            <%= f.file_field :wordmark, class: "photo-field" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="field">
+          <%= f.label :primary_color, "Primary Color" %><br />
+          <%= f.color_field :primary_color, {:class => "photo-field"} %>
+        </div>
+
+        <div class="field">
+          <%= f.label :secondary_color, "Secondary Color" %><br />
+          <%= f.color_field :secondary_color, {:class => "photo-field"} %>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="field">
+          <%= f.label :head_coach, "Head Coach" %><br />
+          <%= f.text_field :head_coach %>
+        </div>
+
+        <div class="field">
+          <%= f.label :stadium_name, "Stadium Name" %><br />
+          <%= f.text_field :stadium_name %>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="field offensive">
+          <%= f.label :offensive_coordinator, "Offensive Coordinator" %><br />
+          <%= f.text_field :offensive_coordinator %>
+        </div>
+
+        <div class="form-box-city-state">
+          <div class="field city">
+            <%= f.label :stadium_city, "Stadium City" %><br />
+            <%= f.text_field :stadium_city %>
+          </div>
+
+          <div class="field state">
+            <%= f.label :stadium_state, "State" %><br />
+            <%= f.select :stadium_state, @states%>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="field">
+          <%= f.label :defensive_coordinator, "Defensive Coordinator" %><br />
+          <%= f.text_field :defensive_coordinator %>
+        </div>
+
+        <div class="field">
+          <%= f.label :stadium_capacity, "Stadium Capacity" %><br />
+          <%= f.text_field :stadium_capacity %>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="field">
+          <%= f.label :special_teams_coach, "Special Teams Coach" %><br />
+          <%= f.text_field :special_teams_coach %>
+        </div>
+
+        <div class="field">
+          <%= f.label :stadium_playing_surface, "Stadium Field Style" %><br />
+          <%= f.select :stadium_playing_surface, @surfaces %>
+        </div>
+      </div>
+
+
+      <div>
+        <%= f.submit "Update Team", class: "transaction-button devise-button-text" %>
+      </div>
+    <% end %>
+  </div>
+</div>

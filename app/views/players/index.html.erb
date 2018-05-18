@@ -1,10 +1,10 @@
-<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
 </div>
-<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
 <div id="header-spacer"> </div>
 
 <div class="search-page"</div>
@@ -12,9 +12,9 @@
   <% if @results.length > 0 %>
   <ul class="small-block-grid-2 medium-block-grid-3 search-results">
   <% @results.each do |player| %>
-    <li class="player-search-result" style="border-color:#<%= player.team.primary_color %>; background-color:#<%= player.team.secondary_color %>30">
+    <li class="player-search-result" style="border-color:<%= player.team.primary_color %>; background-color:<%= player.team.secondary_color %>30">
       <div class="player-show-top">
-        <img class="player-search-picture" style="border-color:#<%= player.team.primary_color %>" src= <%= player.photo_url %> alt= <%= player.name %>/>
+        <img class="player-search-picture" style="border-color:<%= player.team.primary_color %>" src= <%= player.photo_url %> alt= <%= player.name %>/>
         <div class="player-show-top-left">
           <h4><%= link_to player.name, player %></h4>
           <h4> #<%= player.number %><% if player.position %> - <%= player.full_position %> <% end %> </h4>
