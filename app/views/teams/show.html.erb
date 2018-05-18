@@ -30,12 +30,9 @@
   </div>
   <% if @current_user && @current_user.team_id == @team.id %>
     <span class="transaction-button-container">
-      <form class="button-form1" action='/teams/free_agents' >
-          <input type="submit" class="button transaction-button" value="Add a Player"/>
-      </form>
-      <form class="button-form2" action=<%= trades_path %> >
-          <input type="submit" class="button transaction-button" v value="View Trades"/>
-      </form>
+      <%= button_to 'Add Player', '/teams/free_agents', class: "button transaction-button" %>
+      <%= button_to 'View Trades', trades_path, class: "button transaction-button middle" %>
+      <%= button_to 'Edit Team Details', edit_team_path(@team), class: "button transaction-button" %>
     </span>
   <% end %>
   <div class="line-break-bottom" style="background-color: <%= @team.primary_color %>"></div>
