@@ -15,6 +15,18 @@ class TeamsController < ApplicationController
     @players = playerList.order(:last_name)
   end
 
+  def edit
+    @team = Team.find(params[:id])
+    if !current_user || current_user.team_id != @team.id
+      flash[:notice] = "You can only edit your own team's details."
+      redirect_back(fallback_location: "/teams/")
+    end
+  end
+
+  def update
+    redirect_back(fallback_location: "/teams/")
+  end
+
   private
 
   def set_user

@@ -1,0 +1,78 @@
+<h1>Rebrand Your Team</h1>
+<div class="team-form"</div>
+  <%= form_for(@team) do |f| %>
+
+    <div class="field">
+      <%= f.label :city %><br />
+      <%= f.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :head_coach %><br />
+      <%= f.text_field :head_coach %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :offensive_coordinator %><br />
+      <%= f.text_field :offensive_coordinator %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :defensive_coordinator %><br />
+      <%= f.text_field :defensive_coordinator %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :special_teams_coach %><br />
+      <%= f.text_field :special_teams_coach %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stadium_name %><br />
+      <%= f.text_field :stadium_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stadium_city %><br />
+      <%= f.text_field :stadium_city %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stadium_state %><br />
+      <%= f.text_field :stadium_state %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stadium_capacity %><br />
+      <%= f.text_field :stadium_capacity %>
+    </div>
+
+    <div class="field">
+      <%= f.label :stadium_playing_surface %><br />
+      <%= f.text_field :stadium_playing_surface %>
+    </div>
+
+    <div class="field">
+      <%= f.label :primary_color %><br />
+      <%= f.color_field :primary_color %>
+    </div>
+
+    <div class="field">
+      <%= f.label :secondary_color %><br />
+      <%= f.color_field :secondary_color %>
+    </div>
+
+    <div>
+        <%= f.submit %>
+    </div>
+  <% end %>
+</div>
