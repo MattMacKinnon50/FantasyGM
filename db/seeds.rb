@@ -62,51 +62,53 @@ abbr_array.each do |org|
   file = File.read("./app/builders/rosters/#{org[0]}.json")
   data = JSON.parse(file)
   data.each do |player|
-    stats17 = nil
-    statsppr17 = nil
-    ps_eligibility = false
-    if player["PlayerSeason"] != nil
-      stats17 = player["PlayerSeason"]["FantasyPoints"]
-      statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
-    end
-    if player["experience"] && player["experience"] <= 2
-      ps_eligibility = true
-    end
+    if player["Position"] != nil
+      stats17 = nil
+      statsppr17 = nil
+      ps_eligibility = false
+      if player["PlayerSeason"] != nil
+        stats17 = player["PlayerSeason"]["FantasyPoints"]
+        statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
+      end
+      if player["Experience"] && player["Experience"] <= 2
+        ps_eligibility = true
+      end
 
-    Player.create!(
-      team: org[1],
-      nfl_team: player["Team"],
-      number: player["Number"],
-      first_name: player["FirstName"],
-      last_name: player["LastName"],
-      position: player["Position"],
-      height: player["Height"],
-      weight: player["Weight"],
-      birth_date: player["BirthDate"],
-      college: player["College"],
-      experience: player["Experience"],
-      photo_url: player["PhotoUrl"],
-      bye_week: player["ByeWeek"],
-      college_draft_team: player["CollegeDraftTeam"],
-      college_draft_year: player["CollegeDraftYear"],
-      college_draft_round: player["CollegeDraftRound"],
-      college_draft_pick: player["CollegeDraftPick"],
-      undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
-      fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],
-      sports_radar_player_id: player["SportRadarPlayerID"],
-      rotoworld_player_id: player["RotoworldPlayerID"],
-      rotowire_player_id: player["RotoWirePlayerID"],
-      stats_player_id: player["StatsPlayerID"],
-      sports_direct_player_id: player["SportsDirectPlayerID"],
-      xmlteam_player_id: player["XmlTeamPlayerID"],
-      fanduel_player_id: player["FanDuelPlayerID"],
-      draftkings_player_id: player["DraftKingsPlayerID"],
-      yahoo_player_id: player["YahooPlayerID"],
-      fantasydraft_player_id: player["FantasyDraftPlayerID"],
-      fantasy_stats_2017: stats17,
-      fantasy_stats_ppr_2017: statsppr17,
-      ps_eligibility: ps_eligibility
-    )
+      Player.create!(
+        team: org[1],
+        nfl_team: player["Team"],
+        number: player["Number"],
+        first_name: player["FirstName"],
+        last_name: player["LastName"],
+        position: player["Position"],
+        height: player["Height"],
+        weight: player["Weight"],
+        birth_date: player["BirthDate"],
+        college: player["College"],
+        experience: player["Experience"],
+        photo_url: player["PhotoUrl"],
+        bye_week: player["ByeWeek"],
+        college_draft_team: player["CollegeDraftTeam"],
+        college_draft_year: player["CollegeDraftYear"],
+        college_draft_round: player["CollegeDraftRound"],
+        college_draft_pick: player["CollegeDraftPick"],
+        undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
+        fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],
+        sports_radar_player_id: player["SportRadarPlayerID"],
+        rotoworld_player_id: player["RotoworldPlayerID"],
+        rotowire_player_id: player["RotoWirePlayerID"],
+        stats_player_id: player["StatsPlayerID"],
+        sports_direct_player_id: player["SportsDirectPlayerID"],
+        xmlteam_player_id: player["XmlTeamPlayerID"],
+        fanduel_player_id: player["FanDuelPlayerID"],
+        draftkings_player_id: player["DraftKingsPlayerID"],
+        yahoo_player_id: player["YahooPlayerID"],
+        fantasydraft_player_id: player["FantasyDraftPlayerID"],
+        fantasy_stats_2017: stats17,
+        fantasy_stats_ppr_2017: statsppr17,
+        ps_eligibility: ps_eligibility
+      )
+    end
   end
 
 end
