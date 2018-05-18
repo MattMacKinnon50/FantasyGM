@@ -19,6 +19,9 @@
 <% end %>
 
 <div class="trade-container">
+  <% if @trades.length == 0 %>
+    <h3 class="search-error">No active trade offers.</h3>
+  <% end %>
   <ul class="trade-list">
     <% @trades.each do |trade| %>
     <li class="trade-item">
