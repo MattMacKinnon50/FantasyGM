@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
     else
       @team = Team.find(params[:id])
     end
-    playerList = @team.players.where.not(position: nil)
+    playerList = @team.players
     @players = playerList.order(:last_name)
   end
 

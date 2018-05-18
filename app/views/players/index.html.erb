@@ -1,5 +1,15 @@
+<div class="stripe1" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:#<%= @team.primary_color %>;background-image:linear-gradient(to right,#<%= @team.primary_color %>,#<%= @team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:#<%= @team.secondary_color %>">
+  <img class="show-title" src= <%= @team.wikipedia_wordmark_url%> alt= <%= @team.full_name %> />
+</div>
+<div class="line-break" style="background-color: #<%= @team.primary_color %>"></div>
+<div id="header-spacer"> </div>
+
 <div class="search-page"</div>
 <% if @results %>
+  <% if @results.length > 0 %>
   <ul class="small-block-grid-2 medium-block-grid-3 search-results">
   <% @results.each do |player| %>
     <li class="player-search-result" style="border-color:#<%= player.team.primary_color %>; background-color:#<%= player.team.secondary_color %>30">
@@ -17,7 +27,10 @@
     </li>
     <% end %>
   </ul>
+  <% else %>
+    <h3 class="search-error">No players found matching your search.</h3>
+  <% end %>
 <% else %>
-<h3>  Please enter your search in the field above to find players. </h3>
+<h3 class="search-error">Please enter your search in the field above to find players.</h3>
 <% end %>
 </div>
