@@ -16,7 +16,7 @@ end
 
 data = JSON.pretty_generate(JSON[response.body])
 
-File.open('../app/builders/team_api.json', 'w') { |file| file.write(data) }
+File.open('./app/builders/team_api.json', 'w') { |file| file.write(data) }
 
 teams = ["ARI",
  "ATL",
