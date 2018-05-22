@@ -11,7 +11,7 @@ This is a test app to serve as a skills exercise and is not for production.  It 
 This app is looking to provide a unique fantasy football experience, where a user would manage a full NFL roster over multiple seasons.  The app currently only hosts 1 league, and offers roster management functionality.
 
 #### Screen Shot of Sample Team Page:
-![Vikings Home Page](/../app/assets/images/Screen Shot.png)
+![Vikings Home Page](/app/assets/images/Screen Shot.png)
 
 #### Production Environment
 FantasyGM's production environment can be viewed on [Heroku](https://fantasy-gm.herokuapp.com).
