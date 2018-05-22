@@ -33,6 +33,7 @@ Once your database is established, in one terminal tab, run `rails -s` and in a 
 - [x] Add team edit functionality.
 - [x] Implement basic player search.
 - [ ] Implement advanced player search.
+- [ ] Add player/team transaction log.
 - [ ] Add player salary information.
 - [ ] Add team salary cap restrictions.
 - [ ] Add free agent contract calculator.
