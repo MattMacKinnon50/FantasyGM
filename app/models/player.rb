@@ -19,6 +19,36 @@ class Player < ApplicationRecord
     position_names[position.downcase.to_sym]
   end
 
+  def self.positions
+    positions = []
+    players = Player.all
+    players.each do |player|
+      if !positions.include?(player.position)
+        positions << player.position
+      end
+    end
+    positions.sort
+  end
+
+  def self.draft_info
+    teams = []
+    rounds = []
+    years = []
+    players = Player.all
+    players.each do |player|
+      if !player.nfl_team.nil? && !teams.include?(player.nfl_team)
+        teams << player.nfl_team
+      end
+      if !player.college_draft_round.nil? && !rounds.include?(player.college_draft_round)
+        rounds << player.college_draft_round
+      end
+      if !player.college_draft_year.nil? && !years.include?(player.college_draft_year)
+        years << player.college_draft_year
+      end
+    end
+    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort}
+  end
+
   def self.search_by_full_name(search)
     results = []
     names = search.split(" ")

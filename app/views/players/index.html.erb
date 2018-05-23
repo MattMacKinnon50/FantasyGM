@@ -1,10 +1,10 @@
-<div class="stripe1" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
-<div class="stripe2" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 27%);"></div>
-<div class="stripe3" style="background-color:<%= @team.primary_color %>;background-image:linear-gradient(to right,<%= @team.primary_color %>,<%= @team.secondary_color %> 100%);"></div>
-<div class="team-img-frame" style="border-color:<%= @team.secondary_color %>">
-  <img class="show-title" src= <%= @team.wordmark%> alt= <%= @team.full_name %> />
+<div class="stripe1" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @current_team.secondary_color %>">
+  <%= link_to image_tag(@current_team.wordmark.url, :alt => @current_team.full_name, :title => @current_team.full_name, :class => "show-title"), @current_team %>
 </div>
-<div class="line-break" style="background-color: <%= @team.primary_color %>"></div>
+<div class="line-break" style="background-color:<%= @current_team.primary_color %>"></div>
 <div id="header-spacer"> </div>
 
 <div class="search-page"</div>
