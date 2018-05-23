@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 
   resources :trades
 
+  resources :search, controller: 'players', only: [:new]
+
 end

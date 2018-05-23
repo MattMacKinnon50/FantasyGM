@@ -18,7 +18,7 @@
         <div class="player-show-top-left">
           <h4><%= link_to player.name, player %></h4>
           <h4> #<%= player.number %><% if player.position %> - <%= player.full_position %> <% end %> </h4>
-          <h5> Current Team: <%= player.team.full_name %></h5>
+          <h5> Team: <%= player.team.full_name %></h5>
         </div>
       </div>
       <h5> NFL Team: <% if player.nfl_team %><%= player.nfl_team %><% else %> None <% end %> </h5>

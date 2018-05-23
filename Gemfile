@@ -65,6 +65,7 @@ gem "activesupport"
 gem "pry"
 gem "carrierwave"
 gem "fog"
+gem "ransack"
 
 group :test do
   gem 'coveralls', require: false
