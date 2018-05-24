@@ -23,11 +23,12 @@ class PlayersController < ApplicationController
       @current_team = Team.find(33)
     end
     @q = Player.ransack(params[:q])
-    @team = Team.find(33)
+    @teams = Team.all
     @positions = Player.positions
     @draft_teams = Player.draft_info[:teams]
     @draft_years = Player.draft_info[:years]
     @draft_rounds = Player.draft_info[:rounds]
+    @udfa = Player.draft_info[:udfa]
   end
 
   def show

@@ -34,6 +34,7 @@ class Player < ApplicationRecord
     teams = []
     rounds = []
     years = []
+    udfa = []
     players = Player.all
     players.each do |player|
       if !player.nfl_team.nil? && !teams.include?(player.nfl_team)
@@ -45,8 +46,11 @@ class Player < ApplicationRecord
       if !player.college_draft_year.nil? && !years.include?(player.college_draft_year)
         years << player.college_draft_year
       end
+      if !player.college_draft_team.nil? && !teams.include?(player.college_draft_team) && !udfa.include?(player.college_draft_team)
+        udfa << player.college_draft_team
+      end
     end
-    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort}
+    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort, udfa: udfa.sort}
   end
 
   def self.search_by_full_name(search)

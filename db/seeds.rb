@@ -65,6 +65,7 @@ abbr_array.each do |org|
     if player["Position"] != nil
       stats17 = nil
       statsppr17 = nil
+      college_draft_team = nil
       ps_eligibility = false
       if player["PlayerSeason"] != nil
         stats17 = player["PlayerSeason"]["FantasyPoints"]
@@ -73,6 +74,12 @@ abbr_array.each do |org|
       if player["Experience"] && player["Experience"] <= 2
         ps_eligibility = true
       end
+      if player["college_draft_team"] == "ARZ"
+        college_draft_team = "ARI"
+      elsif player["college_draft_team"] == "ARZ FA"
+        college_draft_team = "ARI FA"
+      elsif player["college_draft_team"] == "ARZ Supp"
+        college_draft_team = "ARI Supp"
 
       Player.create!(
         team: org[1],
