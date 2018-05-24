@@ -65,7 +65,8 @@ abbr_array.each do |org|
     if player["Position"] != nil
       stats17 = nil
       statsppr17 = nil
-      college_draft_team = nil
+      college_draft_team = player["CollegeDraftTeam"]
+      college_draft_round = nil
       ps_eligibility = false
       if player["PlayerSeason"] != nil
         stats17 = player["PlayerSeason"]["FantasyPoints"]
@@ -74,28 +75,33 @@ abbr_array.each do |org|
       if player["Experience"] && player["Experience"] <= 2
         ps_eligibility = true
       end
-      if player["college_draft_team"] == "ARZ"
+      if college_draft_team == "ARZ"
         college_draft_team = "ARI"
-      elsif player["college_draft_team"] == "ARZ FA"
+      elsif college_draft_team == "ARZ FA"
         college_draft_team = "ARI FA"
-      elsif player["college_draft_team"] == "ARZ Supp"
+      elsif college_draft_team == "ARZ Supp"
         college_draft_team = "ARI Supp"
-      elsif player["college_draft_team"] == "BA"
+      elsif college_draft_team == "BA"
         college_draft_team = "BAL"
-      elsif player["college_draft_team"] == "NUJ"
+      elsif college_draft_team == "NUJ"
         college_draft_team = "NYJ"
-      elsif player["college_draft_team"] == "Â IND"
+      elsif college_draft_team == "Â IND"
         college_draft_team = "IND"
-      elsif player["college_draft_team"] == "PHI  FA"
+      elsif college_draft_team == "PHI  FA"
         college_draft_team = "PHI FA"
-      elsif player["college_draft_team"] == "SL"
+      elsif college_draft_team == "SL"
         college_draft_team = "STL"
-      elsif player["college_draft_team"] == "SL FA"
+      elsif college_draft_team == "SL FA"
         college_draft_team = "STL FA"
-      elsif player["college_draft_team"] == "SL Supp"
+      elsif college_draft_team == "SL Supp"
         college_draft_team = "STL Supp"
-      elsif player["college_draft_team"] == "LA FA"
+      elsif college_draft_team == "LA FA"
         college_draft_team = "LAR FA"
+      end
+      if player["IsUndraftedFreeAgent"] && player["CollegeDraftRound"]
+        college_draft_round = "#{player["CollegeDraftRound"]}S"
+      else
+        college_draft_round = player["CollegeDraftRound"]
       end
 
       Player.create!(
@@ -112,9 +118,9 @@ abbr_array.each do |org|
         experience: player["Experience"],
         photo_url: player["PhotoUrl"],
         bye_week: player["ByeWeek"],
-        college_draft_team: player["CollegeDraftTeam"],
+        college_draft_team: college_draft_team,
         college_draft_year: player["CollegeDraftYear"],
-        college_draft_round: player["CollegeDraftRound"],
+        college_draft_round: college_draft_round,
         college_draft_pick: player["CollegeDraftPick"],
         undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
         fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],

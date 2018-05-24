@@ -36,16 +36,21 @@ class Player < ApplicationRecord
 
   def self.draft_info
     teams = []
-    rounds = []
+    draft_rounds = []
+    supp = []
     years = []
     players = Player.all
     players.each do |player|
       team = player.college_draft_team
       if !team.nil? && team.include?(" ")
-        team = "#{team.split(" ").first}"
+        team = team.split(" ").first
       end
-      if !player.college_draft_round.nil? && !rounds.include?(player.college_draft_round)
-        rounds << player.college_draft_round
+      if !player.college_draft_round.nil?
+        if player.college_draft_round.length == 1 && !draft_rounds.include?(player.college_draft_round)
+          draft_rounds << player.college_draft_round
+        elsif player.college_draft_round.length == 2 && !supp.include?(player.college_draft_round)
+          supp << player.college_draft_round
+        end
       end
       if !player.college_draft_year.nil? && !years.include?(player.college_draft_year)
         years << player.college_draft_year
@@ -54,7 +59,8 @@ class Player < ApplicationRecord
         teams << team
       end
     end
-    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort}
+    rounds = draft_rounds.sort.concat(supp.sort)
+    results = {teams: teams.sort, rounds: rounds, years: years.sort}
   end
 
   def self.search_by_full_name(search)
