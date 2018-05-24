@@ -28,7 +28,6 @@ class PlayersController < ApplicationController
     @draft_teams = Player.draft_info[:teams]
     @draft_years = Player.draft_info[:years]
     @draft_rounds = Player.draft_info[:rounds]
-    @udfa = Player.draft_info[:udfa]
   end
 
   def show

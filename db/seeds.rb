@@ -88,6 +88,14 @@ abbr_array.each do |org|
         college_draft_team = "IND"
       elsif player["college_draft_team"] == "PHI  FA"
         college_draft_team = "PHI FA"
+      elsif player["college_draft_team"] == "SL"
+        college_draft_team = "STL"
+      elsif player["college_draft_team"] == "SL FA"
+        college_draft_team = "STL FA"
+      elsif player["college_draft_team"] == "SL Supp"
+        college_draft_team = "STL Supp"
+      elsif player["college_draft_team"] == "LA FA"
+        college_draft_team = "LAR FA"
       end
 
       Player.create!(

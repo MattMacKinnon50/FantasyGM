@@ -26,8 +26,8 @@
   <%= f.label :position_eq, "Position" %>
   <%= f.select :position_eq, options_from_collection_for_select(@positions, :to_s, :to_s), include_blank: true %>
 
-  <%= f.label :college_draft_team_eq, "Drafted by" %>
-  <%= f.select :college_draft_team_eq, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+  <%= f.label :college_draft_team_cont, "Started Career with" %>
+  <%= f.select :college_draft_team_cont, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
 
   <%= f.label :college_draft_year_eq, "Draft Year" %>
   <%= f.select :college_draft_year_eq, options_from_collection_for_select(@draft_years, :to_s, :to_s), include_blank: true %>
@@ -40,11 +40,6 @@
 
   <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Earlier (latest drafted pick: 262)" %>
   <%= f.search_field :college_draft_pick_gteq %>
-
-  <%= f.label :college_draft_team_eq, "Signed as an Undrafted Free Agent by" %>
-  <%= f.select :college_draft_team_eq, options_from_collection_for_select(@udfa, :first, :last), include_blank: true %>
-
-
 
   <%= f.submit %>
 <% end %>

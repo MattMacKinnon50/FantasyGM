@@ -38,27 +38,23 @@ class Player < ApplicationRecord
     teams = []
     rounds = []
     years = []
-    udfa = {}
-    supp = {}
     players = Player.all
     players.each do |player|
+      team = player.college_draft_team
+      if !team.nil? && team.include?(" ")
+        team = "#{team.split(" ").first}"
+      end
       if !player.college_draft_round.nil? && !rounds.include?(player.college_draft_round)
         rounds << player.college_draft_round
       end
       if !player.college_draft_year.nil? && !years.include?(player.college_draft_year)
         years << player.college_draft_year
       end
-      if !player.college_draft_team.nil?
-        if player.college_draft_team.length <= 3 && !teams.include?(player.college_draft_team)
-          teams << player.college_draft_team
-        elsif player.college_draft_team[-1] == "A" && !udfa.has_key?(player.college_draft_team)
-          udfa["#{player.college_draft_team}"] = player.college_draft_team[0...-3]
-        elsif !supp.has_key?(player.college_draft_team)
-          supp["#{player.college_draft_team}"] = player.college_draft_team[0...-5]
-        end
+      if !team.nil? && !teams.include?(team)
+        teams << team
       end
     end
-    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort, udfa: udfa.sort, supp: supp.sort}
+    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort}
   end
 
   def self.search_by_full_name(search)
