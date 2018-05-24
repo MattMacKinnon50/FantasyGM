@@ -42,7 +42,7 @@
   <%= f.search_field :college_draft_pick_gteq %>
 
   <%= f.label :college_draft_team_eq, "Signed as an Undrafted Free Agent by" %>
-  <%= f.select :college_draft_team_eq, options_from_collection_for_select(@udfa, :to_s, :to_s[0...-3]), include_blank: true %>
+  <%= f.select :college_draft_team_eq, options_from_collection_for_select(@udfa, :first, :last), include_blank: true %>
 
 
 

@@ -36,9 +36,11 @@
       </div>
       <h5> Current Team: <%= @player.team.full_name %></h5>
       <h5> NFL Team: <% if @player.nfl_team %><%= @player.nfl_team %><% else %> None <% end %> </h5>
-      <h5>Experience: <%= @player.experience %> Years</h5>
+      <h5>Experience: <%= @player.experience %> Year<% if @player.experience != 1%>s<% end %></h5>
       <% if !@player.undrafted_free_agent_status %>
         <h5>Drafted in <%= @player.college_draft_year %> by <%= @player.college_draft_team %> in Round <%= @player.college_draft_round %> with pick #<%= @player.college_draft_pick %>.</h5>
+      <% elsif !@player.college_draft_round.nil? %>
+        <h5>Drafted in <%= @player.college_draft_year %> by <%= @player.college_draft_team[0,3]  %> in Round <%= @player.college_draft_round %> of the Supplemental Draft.</h5>
       <% else %>
         <h5>Signed in <%= @player.college_draft_year %> by <%= @player.college_draft_team[0,3] %> as an Undrafted Free Agent.</h5>
       <% end %>

@@ -11,7 +11,11 @@ class Player < ApplicationRecord
   end
 
   def birthday
-    Date.parse(birth_date).strftime("%B %d, %Y")
+    if !birth_date.nil?
+      Date.parse(birth_date).strftime("%B %d, %Y")
+    else
+      "N/A"
+    end
   end
 
   def full_position
@@ -34,23 +38,27 @@ class Player < ApplicationRecord
     teams = []
     rounds = []
     years = []
-    udfa = []
+    udfa = {}
+    supp = {}
     players = Player.all
     players.each do |player|
-      if !player.nfl_team.nil? && !teams.include?(player.nfl_team)
-        teams << player.nfl_team
-      end
       if !player.college_draft_round.nil? && !rounds.include?(player.college_draft_round)
         rounds << player.college_draft_round
       end
       if !player.college_draft_year.nil? && !years.include?(player.college_draft_year)
         years << player.college_draft_year
       end
-      if !player.college_draft_team.nil? && !teams.include?(player.college_draft_team) && !udfa.include?(player.college_draft_team)
-        udfa << player.college_draft_team
+      if !player.college_draft_team.nil?
+        if player.college_draft_team.length <= 3 && !teams.include?(player.college_draft_team)
+          teams << player.college_draft_team
+        elsif player.college_draft_team[-1] == "A" && !udfa.has_key?(player.college_draft_team)
+          udfa["#{player.college_draft_team}"] = player.college_draft_team[0...-3]
+        elsif !supp.has_key?(player.college_draft_team)
+          supp["#{player.college_draft_team}"] = player.college_draft_team[0...-5]
+        end
       end
     end
-    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort, udfa: udfa.sort}
+    results = {teams: teams.sort, rounds: rounds.sort, years: years.sort, udfa: udfa.sort, supp: supp.sort}
   end
 
   def self.search_by_full_name(search)
