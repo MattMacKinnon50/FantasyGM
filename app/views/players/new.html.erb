@@ -11,50 +11,97 @@
 <div class="advanced-search">
   <%= search_form_for @q do |f| %>
 
-  <%= f.label :first_name_cont, "First Name" %>
-  <%= f.search_field :first_name_cont %>
+  <div class="row">
+    <div class="search columns small-3">
+      <%= f.label :first_name_cont, "First Name" %>
+      <%= f.search_field :first_name_cont %>
+    </div>
 
-  <%= f.label :last_name_cont, "Last Name" %>
-  <%= f.search_field :last_name_cont %>
+    <div class="search columns small-3">
+      <%= f.label :last_name_cont, "Last Name" %>
+      <%= f.search_field :last_name_cont %>
+    </div>
 
-  <%= f.label :team_id_eq, "Current Team" %>
-  <%= f.select :team_id_eq, options_from_collection_for_select(@teams, :id, :full_name), include_blank: true %>
+    <div class="search columns small-2">
+      <%= f.label :team_id_eq, "Current Team" %>
+      <%= f.select :team_id_eq, options_from_collection_for_select(@teams, :id, :full_name), include_blank: true %>
+    </div>
 
-  <%= f.label :nfl_team_eq, "NFL Team" %>
-  <%= f.select :nfl_team_eq, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+    <div class="search columns small-2">
+      <%= f.label :nfl_team_eq, "NFL Team" %>
+      <%= f.select :nfl_team_eq, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+    </div>
 
-  <%= f.label :position_eq, "Position" %>
-  <%= f.select :position_eq, options_from_collection_for_select(@positions, :to_s, :to_s), include_blank: true %>
+    <div class="search columns small-1">
+      <%= f.label :number_eq, "Number" %>
+      <%= f.search_field :number_eq%>
+    </div>
 
-  <%= f.label :college_cont, "College" %>
-  <%= f.search_field :college_cont %>
+    <div class="search columns small-1">
+      <%= f.label :position_eq, "Position" %>
+      <%= f.select :position_eq, options_from_collection_for_select(@positions, :to_s, :to_s), include_blank: true %>
+    </div>
+  </div>
 
-  <%= f.label :college_draft_team_cont, "Started Career with" %>
-  <%= f.select :college_draft_team_cont, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+  <div class="search">
+    <%= f.label :experience_lteq, "Experience" %>
+    <%= f.search_field :experience_lteq%>
+  </div>
 
-  <%= f.label :college_draft_year_eq, "Draft Year" %>
-  <%= f.select :college_draft_year_eq, options_from_collection_for_select(@draft_years, :to_s, :to_s), include_blank: true %>
+  <div class="search to-label">
+    <%= f.label :experience_gteq, "to" %>
+    <%= f.search_field :experience_gteq%>
+  </div>
 
-  <%= f.label :college_draft_round_eq, "Draft Round" %>
-  <%= f.select :college_draft_round_eq, options_from_collection_for_select(@draft_rounds, :to_s, :to_s), include_blank: true %>
+  <div class="search">
+    <%= f.label :college_draft_team_cont, "Started Career with" %>
+    <%= f.select :college_draft_team_cont, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+  </div>
 
-  <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Later" %>
-  <%= f.search_field :college_draft_pick_gteq %>
+  <div class="search">
+    <%= f.label :college_cont, "College" %>
+    <%= f.search_field :college_cont %>
+  </div>
 
-  <%= f.label :college_draft_pick_lteq, "Selected At This Pick or Earlier" %>
-  <%= f.search_field :college_draft_pick_lteq %>
+  <div class="search">
+    <%= f.label :college_draft_year_eq, "Draft Year" %>
+    <%= f.select :college_draft_year_eq, options_from_collection_for_select(@draft_years, :to_s, :to_s), include_blank: true %>
+  </div>
 
-  <%= f.label :height_feet_gteq, "Height (Feet)" %>
-  <%= f.select :height_feet_gteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+  <div class="search">
+    <%= f.label :college_draft_round_eq, "Draft Round" %>
+    <%= f.select :college_draft_round_eq, options_from_collection_for_select(@draft_rounds, :to_s, :to_s), include_blank: true %>
+  </div>
 
-  <%= f.label :height_feet_lteq, "to" %>
-  <%= f.select :height_feet_lteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+  <div class="search">
+    <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Later" %>
+    <%= f.search_field :college_draft_pick_gteq %>
+  </div>
 
-  <%= f.label :weight_gteq, "Weight" %>
-  <%= f.search_field :weight_gteq %>
+  <div class="search">
+    <%= f.label :college_draft_pick_lteq, "Selected At This Pick or Earlier" %>
+    <%= f.search_field :college_draft_pick_lteq %>
+  </div>
 
-  <%= f.label :weight_lteq, "to" %>
-  <%= f.search_field :weight_lteq %>
+  <div class="search">
+    <%= f.label :height_feet_gteq, "Height (Feet)" %>
+    <%= f.select :height_feet_gteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+  </div>
+
+  <div class="search">
+    <%= f.label :height_feet_lteq, "to" %>
+    <%= f.select :height_feet_lteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+  </div>
+
+  <div class="search">
+    <%= f.label :weight_gteq, "Weight" %>
+    <%= f.search_field :weight_gteq %>
+  </div>
+
+  <div class="search">
+    <%= f.label :weight_lteq, "to" %>
+    <%= f.search_field :weight_lteq %>
+  </div>
 
   <%= f.submit %>
 <% end %>

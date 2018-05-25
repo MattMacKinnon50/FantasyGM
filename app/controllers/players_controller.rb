@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
       @results = @q.result(distinct: true)
     end
     if @results.length > 66
-      flash[:notice] = "Found #{@results.length} players. Search results limited to first 66 players found."
+      flash.now[:notice] = "Found #{@results.length} players. Search results limited to first 66 players found."
       @results = @results.first(66)
     end
   end
