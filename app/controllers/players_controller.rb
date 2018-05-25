@@ -15,8 +15,8 @@ class PlayersController < ApplicationController
       @results = @q.result(distinct: true)
     end
     if @results.length > 66
+      flash[:notice] = "Found #{@results.length} players. Search results limited to first 66 players found."
       @results = @results.first(66)
-      flash[:notice] = "Search results limited to first 66 players found."
     end
   end
 
@@ -32,6 +32,7 @@ class PlayersController < ApplicationController
     @draft_teams = Player.draft_info[:teams]
     @draft_years = Player.draft_info[:years]
     @draft_rounds = Player.draft_info[:rounds]
+    @height = Player.height_data
   end
 
   def show

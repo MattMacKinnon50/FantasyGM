@@ -78,4 +78,15 @@ class Player < ApplicationRecord
     end
     results
   end
+
+  def self.height_data
+    results = {}
+    players = Player.all
+    players.each do |player|
+      if player.height != nil && !results.keys.include?(player.height)
+        results["#{player.height}"] = player.height_feet
+      end
+    end
+    results.sort_by{|k,v| v}
+  end
 end

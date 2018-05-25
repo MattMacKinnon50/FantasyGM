@@ -45,16 +45,10 @@
   <%= f.search_field :college_draft_pick_lteq %>
 
   <%= f.label :height_feet_gteq, "Height (Feet)" %>
-  <%= f.search_field :height_feet_gteq %>
+  <%= f.select :height_feet_gteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
 
   <%= f.label :height_feet_lteq, "to" %>
-  <%= f.search_field :height_feet_lteq %>
-
-  <%= f.label :height_inches_gteq, "Height (Inches)" %>
-  <%= f.search_field :height_inches_gteq %>
-
-  <%= f.label :height_inches_lteq, "to" %>
-  <%= f.search_field :height_inches_lteq %>
+  <%= f.select :height_feet_lteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
 
   <%= f.label :weight_gteq, "Weight" %>
   <%= f.search_field :weight_gteq %>
