@@ -68,10 +68,6 @@ abbr_array.each do |org|
       college_draft_team = player["CollegeDraftTeam"]
       college_draft_round = nil
       ps_eligibility = false
-      draft_pick = nil
-      if player["CollegeDraftPick"] != nil
-        draft_pick = player["CollegeDraftPick"].to_i
-      end
       if player["PlayerSeason"] != nil
         stats17 = player["PlayerSeason"]["FantasyPoints"]
         statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
@@ -107,7 +103,12 @@ abbr_array.each do |org|
       else
         college_draft_round = player["CollegeDraftRound"]
       end
-
+      height = 0.0
+      if player["HeightFeet"] != nil
+        height = player["HeightFeet"] + (player["HeightInches"]/12.0)
+      else
+        height = nil
+      end
       Player.create!(
         team: org[1],
         nfl_team: player["Team"],
@@ -116,6 +117,7 @@ abbr_array.each do |org|
         last_name: player["LastName"],
         position: player["Position"],
         height: player["Height"],
+        height_feet: height,
         weight: player["Weight"],
         birth_date: player["BirthDate"],
         college: player["College"],
@@ -125,7 +127,7 @@ abbr_array.each do |org|
         college_draft_team: college_draft_team,
         college_draft_year: player["CollegeDraftYear"],
         college_draft_round: college_draft_round,
-        college_draft_pick: draft_pick,
+        college_draft_pick: player["CollegeDraftPick"],
         undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
         fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],
         sports_radar_player_id: player["SportRadarPlayerID"],

@@ -38,13 +38,29 @@
   <%= f.label :college_draft_round_eq, "Draft Round" %>
   <%= f.select :college_draft_round_eq, options_from_collection_for_select(@draft_rounds, :to_s, :to_s), include_blank: true %>
 
-  <%= f.label :college_draft_pick_lteq, "Selected At This Pick or Later" %>
-  <%= f.search_field :college_draft_pick_lteq %>
-
-  <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Earlier (latest drafted pick: 262)" %>
+  <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Later" %>
   <%= f.search_field :college_draft_pick_gteq %>
 
+  <%= f.label :college_draft_pick_lteq, "Selected At This Pick or Earlier" %>
+  <%= f.search_field :college_draft_pick_lteq %>
 
+  <%= f.label :height_feet_gteq, "Height (Feet)" %>
+  <%= f.search_field :height_feet_gteq %>
+
+  <%= f.label :height_feet_lteq, "to" %>
+  <%= f.search_field :height_feet_lteq %>
+
+  <%= f.label :height_inches_gteq, "Height (Inches)" %>
+  <%= f.search_field :height_inches_gteq %>
+
+  <%= f.label :height_inches_lteq, "to" %>
+  <%= f.search_field :height_inches_lteq %>
+
+  <%= f.label :weight_gteq, "Weight" %>
+  <%= f.search_field :weight_gteq %>
+
+  <%= f.label :weight_lteq, "to" %>
+  <%= f.search_field :weight_lteq %>
 
   <%= f.submit %>
 <% end %>
