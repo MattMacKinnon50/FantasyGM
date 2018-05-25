@@ -14,6 +14,10 @@ class PlayersController < ApplicationController
       @q = Player.ransack(params[:q])
       @results = @q.result(distinct: true)
     end
+    if @results.length > 66
+      @results = @results.first(66)
+      flash[:notice] = "Search results limited to first 66 players found."
+    end
   end
 
   def new

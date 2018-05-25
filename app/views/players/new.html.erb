@@ -26,6 +26,9 @@
   <%= f.label :position_eq, "Position" %>
   <%= f.select :position_eq, options_from_collection_for_select(@positions, :to_s, :to_s), include_blank: true %>
 
+  <%= f.label :college_cont, "College" %>
+  <%= f.search_field :college_cont %>
+
   <%= f.label :college_draft_team_cont, "Started Career with" %>
   <%= f.select :college_draft_team_cont, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
 
@@ -40,6 +43,8 @@
 
   <%= f.label :college_draft_pick_gteq, "Selected At This Pick or Earlier (latest drafted pick: 262)" %>
   <%= f.search_field :college_draft_pick_gteq %>
+
+
 
   <%= f.submit %>
 <% end %>

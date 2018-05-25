@@ -76,11 +76,6 @@ class Player < ApplicationRecord
       end
       i += 1
     end
-    if results.length > 66
-      results.first(66)
-    else
-      results
-    end
+    results
   end
-
 end

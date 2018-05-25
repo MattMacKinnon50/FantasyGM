@@ -68,6 +68,10 @@ abbr_array.each do |org|
       college_draft_team = player["CollegeDraftTeam"]
       college_draft_round = nil
       ps_eligibility = false
+      draft_pick = nil
+      if player["CollegeDraftPick"] != nil
+        draft_pick = player["CollegeDraftPick"].to_i
+      end
       if player["PlayerSeason"] != nil
         stats17 = player["PlayerSeason"]["FantasyPoints"]
         statsppr17 = player["PlayerSeason"]["FantasyPointsPPR"]
@@ -121,7 +125,7 @@ abbr_array.each do |org|
         college_draft_team: college_draft_team,
         college_draft_year: player["CollegeDraftYear"],
         college_draft_round: college_draft_round,
-        college_draft_pick: player["CollegeDraftPick"],
+        college_draft_pick: draft_pick,
         undrafted_free_agent_status: player["IsUndraftedFreeAgent"],
         fantasy_alarm_player_id: player["FantasyAlarmPlayerID"],
         sports_radar_player_id: player["SportRadarPlayerID"],
