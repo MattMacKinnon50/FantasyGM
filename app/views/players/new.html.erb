@@ -1,0 +1,117 @@
+<div class="stripe1" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 100%);"></div>
+<div class="stripe2" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 27%);"></div>
+<div class="stripe3" style="background-color:<%= @current_team.primary_color %>;background-image:linear-gradient(to right,<%= @current_team.primary_color %>,<%= @current_team.secondary_color %> 100%);"></div>
+<div class="team-img-frame" style="border-color:<%= @current_team.secondary_color %>">
+  <%= link_to image_tag(@current_team.wordmark.url, :alt => @current_team.full_name, :title => @current_team.full_name, :class => "show-title"), @current_team %>
+</div>
+<div class="line-break" style="background-color:<%= @current_team.primary_color %>"></div>
+<div id="header-spacer"> </div>
+
+
+<div class="advanced-search">
+  <%= search_form_for @q do |f| %>
+
+  <div class="row">
+    <div class="search columns small-3">
+      <%= f.label :first_name_cont, "First Name" %>
+      <%= f.search_field :first_name_cont %>
+    </div>
+
+    <div class="search columns small-3">
+      <%= f.label :last_name_cont, "Last Name" %>
+      <%= f.search_field :last_name_cont %>
+    </div>
+
+    <div class="search columns small-2">
+      <%= f.label :team_id_eq, "Current Team" %>
+      <%= f.select :team_id_eq, options_from_collection_for_select(@teams, :id, :full_name), include_blank: true %>
+    </div>
+
+    <div class="search columns small-2">
+      <%= f.label :nfl_team_eq, "NFL Team" %>
+      <%= f.select :nfl_team_eq, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+    </div>
+
+    <div class="search columns small-1">
+      <%= f.label :number_eq, "Number" %>
+      <%= f.search_field :number_eq%>
+    </div>
+
+    <div class="search columns small-1">
+      <%= f.label :position_eq, "Position" %>
+      <%= f.select :position_eq, options_from_collection_for_select(@positions, :to_s, :to_s), include_blank: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="search columns small-3">
+      <%= f.label :experience_lteq, "Experience" %>
+      <%= f.search_field :experience_lteq%>
+    </div>
+
+    <div class="search columns small-3 to-label">
+      <%= f.label :experience_gteq, "to", class: "to" %>
+      <%= f.search_field :experience_gteq%>
+    </div>
+
+    <div class="search columns small-2">
+      <%= f.label :college_draft_team_cont, "Started Career with" %>
+      <%= f.select :college_draft_team_cont, options_from_collection_for_select(@draft_teams, :to_s, :to_s), include_blank: true %>
+    </div>
+
+    <div class="search columns small-4">
+      <%= f.label :college_cont, "College" %>
+      <%= f.search_field :college_cont %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="search columns small-3">
+      <%= f.label :college_draft_year_eq, "Draft Year" %>
+      <%= f.select :college_draft_year_eq, options_from_collection_for_select(@draft_years, :to_s, :to_s), include_blank: true %>
+    </div>
+
+    <div class="search columns small-3">
+      <%= f.label :college_draft_round_eq, "Draft Round" %>
+      <%= f.select :college_draft_round_eq, options_from_collection_for_select(@draft_rounds, :to_s, :to_s), include_blank: true %>
+    </div>
+
+    <div class="search columns small-3">
+      <%= f.label :college_draft_pick_gteq, "Draft Pick" %>
+      <%= f.search_field :college_draft_pick_gteq %>
+    </div>
+
+    <div class="search to-label columns small-3">
+      <%= f.label :college_draft_pick_lteq, "to", class: "to" %>
+      <%= f.search_field :college_draft_pick_lteq %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="search columns small-3">
+      <%= f.label :height_feet_gteq, "Height (Feet)" %>
+      <%= f.select :height_feet_gteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+    </div>
+
+    <div class="search to-label columns small-3">
+      <%= f.label :height_feet_lteq, "to", class: "to" %>
+      <%= f.select :height_feet_lteq, options_from_collection_for_select(@height, :last, :first), include_blank: true %>
+    </div>
+
+    <div class="search columns small-3">
+      <%= f.label :weight_gteq, "Weight" %>
+      <%= f.search_field :weight_gteq %>
+    </div>
+
+    <div class="search to-label columns small-3">
+      <%= f.label :weight_lteq, "to", class: "to" %>
+      <%= f.search_field :weight_lteq %>
+    </div>
+  </div>
+
+  <div class="search-button-container">
+    <%= f.submit "Search", class: "transaction-button devise-button-text", id: 'search-button' %>
+  </div>
+<% end %>
+
+</div>

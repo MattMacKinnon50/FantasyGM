@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_18_154933) do
+ActiveRecord::Schema.define(version: 2018_05_25_143757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "player_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_favorites_on_player_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.bigint "team_id"
@@ -23,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_05_18_154933) do
     t.string "last_name"
     t.string "position"
     t.string "height"
-    t.string "weight"
+    t.integer "weight"
     t.string "birth_date"
     t.string "college"
     t.integer "experience"
@@ -32,7 +42,7 @@ ActiveRecord::Schema.define(version: 2018_05_18_154933) do
     t.string "college_draft_team"
     t.string "college_draft_year"
     t.string "college_draft_round"
-    t.string "college_draft_pick"
+    t.integer "college_draft_pick"
     t.boolean "undrafted_free_agent_status"
     t.integer "fantasy_alarm_player_id"
     t.string "sports_radar_player_id"
@@ -49,6 +59,7 @@ ActiveRecord::Schema.define(version: 2018_05_18_154933) do
     t.integer "fantasy_stats_ppr_2017"
     t.string "role", default: "b"
     t.boolean "ps_eligibility", default: false
+    t.decimal "height_feet", precision: 4, scale: 3
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 

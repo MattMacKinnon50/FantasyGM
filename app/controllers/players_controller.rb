@@ -1,10 +1,38 @@
 class PlayersController < ApplicationController
   def index
-    @search_terms = params[:name]
-    @team = Team.find(33)
-    if @search_terms && @search_terms != ""
-      @results = Player.search_by_full_name(@search_terms)
+    if current_user
+      @current_team = Team.find(current_user.team_id)
+    else
+      @current_team = Team.find(33)
     end
+    if params[:name]
+      @search_terms = params[:name]
+      if @search_terms && @search_terms != ""
+        @results = Player.search_by_full_name(@search_terms)
+      end
+    elsif params[:q]
+      @q = Player.ransack(params[:q])
+      @results = @q.result(distinct: true)
+    end
+    if @results.length > 66
+      flash.now[:notice] = "Found #{@results.length} players. Search results limited to first 66 players found."
+      @results = @results.first(66)
+    end
+  end
+
+  def new
+    if current_user
+      @current_team = Team.find(current_user.team_id)
+    else
+      @current_team = Team.find(33)
+    end
+    @q = Player.ransack(params[:q])
+    @teams = Team.all
+    @positions = Player.positions
+    @draft_teams = Player.draft_info[:teams]
+    @draft_years = Player.draft_info[:years]
+    @draft_rounds = Player.draft_info[:rounds]
+    @height = Player.height_data
   end
 
   def show
