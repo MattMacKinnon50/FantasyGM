@@ -1,0 +1,29 @@
+@import 'colors';
+
+.advanced-search {
+  margin-top: 3%;
+
+}
+
+#search-button {
+  margin: auto;
+}
+
+.search-button-container {
+  margin: auto;
+  padding-left: 48%;
+}
+
+.to-label {
+  display: flex;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 74px;
+  padding-top: 21px;
+}
+
+.to {
+  padding-right: 1.75em;
+  padding-top: 5px;
+}
