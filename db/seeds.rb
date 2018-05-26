@@ -9,7 +9,6 @@
 file = File.read('./app/builders/team_api.json')
 data = JSON.parse(file)
 
-binding.pry
 data.each do |team|
   Team.create!(
     abbr: team["Key"],
