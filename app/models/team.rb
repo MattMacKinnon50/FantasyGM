@@ -5,6 +5,7 @@ class Team < ApplicationRecord
 
   has_many :players
   has_many :trades
+  has_many :contracts
 
   mount_uploader :logo, LogoUploader
   mount_uploader :wordmark, WordmarkUploader
