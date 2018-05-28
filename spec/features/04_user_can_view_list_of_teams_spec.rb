@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'user views a team index page' do
+  let!(:league) { FactoryBot.create(:league) }
   let!(:team1) { FactoryBot.create(:team) }
   let!(:team2) { FactoryBot.create(:team, remote_logo_url: 'https://upload.wikimedia.org/wikipedia/en/c/c1/Tennessee_Titans_logo.svg')  }
   let!(:user) { FactoryBot.create(:user, team_id: team1.id) }

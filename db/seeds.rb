@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+League.create!(
+  name: "FantasyGM",
+  display_name: "FantasyGM",
+  league_year: 2018,
+  salary_cap: 177200000
+)
+
 file = File.read('./app/builders/team_api.json')
 data = JSON.parse(file)
 

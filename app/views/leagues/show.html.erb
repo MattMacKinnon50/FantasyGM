@@ -1,0 +1,9 @@
+<div class="league-title-container">
+  <h1 class="league-title"><%= @league.name %></h1>
+</div>
+
+<h3> League Rules:</h3>
+<ul class="rules-list">
+  <li>League Year: <%= @league.league_year %></li>
+  <li>Salary Cap: <%= number_to_currency(@league.salary_cap, precision: 0) %></li>
+</ul>

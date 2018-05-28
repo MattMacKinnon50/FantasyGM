@@ -5,7 +5,7 @@ feature 'user registers', %Q{
   I want to register
   So that I can create an account
 } do
-
+  let!(:league) { FactoryBot.create(:league) }
   let!(:team) {FactoryBot.create(:team)}
 
   # Acceptance Criteria:
