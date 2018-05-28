@@ -11,7 +11,7 @@ teams.each do |team|
 end
 
 teams_array.each do |team|
-  contract_url = 'http://www.spotrac.com/nfl/#{team[0]}/contracts/'
+  contract_url = "http://www.spotrac.com/nfl/#{team[0]}/contracts/"
   page = Nokogiri::HTML(open(contract_url))
   contract_items = page.css("tr")
   contract_items.shift
@@ -35,5 +35,22 @@ teams_array.each do |team|
     contracts_array << contract_hash
   end
 
-  
+  contracts_array.each do |contract|
+    player = Player.find_by(first_name: contract["first_name"], last_name: contract["last_name"], team: team[1])
+    length = contract["contract_years"].to_i
+    total = contract["contract_total"]
+    aav = contract["aav"]
+    guaranteed = contract["guaranteed"]
+    expires = contract["expires"].to_i
+    start_year = expires - length
+    Contract.create!(
+      player: player,
+      team: team[1],
+      length: length,
+      total: total,
+      aav: aav,
+      guaranteed: guaranteed,
+      start_year: start_year
+    )
+  end
 end
