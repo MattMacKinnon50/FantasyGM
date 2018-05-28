@@ -4,8 +4,7 @@ feature 'user signs out', %Q{
   As an authenticated user
   I want to sign out
   So that my identity is forgotten about on the machine I'm using
-}
-  do
+} do
     let!(:league) { FactoryBot.create(:league) }
   # Acceptance Criteria
   # * If I'm signed in, I have an option to sign out

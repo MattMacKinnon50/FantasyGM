@@ -4,9 +4,9 @@ feature 'user signs in', %Q{
   As a signed up user
   I want to sign in
   So that I can regain access to my account
-}
-  do
+} do
     let!(:league) { FactoryBot.create(:league) }
+    
   scenario 'specify valid credentials' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
