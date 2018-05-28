@@ -9,15 +9,16 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :teams do
-    resources :players
-  end
+  resources :teams, except: [:destroy, :create]
 
   resources :teams do
+    resources :players
+    resources :contracts
     resources :trades
   end
 
   resources :players do
+    resources :contracts
     patch :add
     delete :drop
   end
@@ -25,5 +26,8 @@ Rails.application.routes.draw do
   resources :trades
 
   resources :search, controller: 'players', only: [:new]
+
+  resources :leagues, only: [:show, :edit]
+
 
 end
