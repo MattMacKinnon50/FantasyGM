@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'user views a team index page' do
+    let!(:league) { FactoryBot.create(:league) }
   let!(:team) { FactoryBot.create(:team) }
   let!(:team2) { FactoryBot.create(:team) }
   let!(:player1) {FactoryBot.create(:player, team: team)}

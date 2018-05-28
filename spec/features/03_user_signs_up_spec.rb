@@ -4,9 +4,10 @@ feature 'user registers', %Q{
   As a visitor
   I want to register
   So that I can create an account
-} do
-
-  let!(:team) {FactoryBot.create(:team)}
+  }
+  do
+    let!(:league) { FactoryBot.create(:league) }
+    let!(:team) {FactoryBot.create(:team)}
 
   # Acceptance Criteria:
   # * I must specify a valid email address,

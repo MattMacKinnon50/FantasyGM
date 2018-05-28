@@ -28,4 +28,11 @@ sample_photo = 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chicago_Bear
     bye_week "1"
   end
 
+  factory :league do
+    name "FantasyGM"
+    display_name "FantasyGM"
+    league_year 2018
+    salary_cap 177200000
+  end
+
 end
