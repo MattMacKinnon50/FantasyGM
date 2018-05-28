@@ -1,10 +1,12 @@
 class Team < ApplicationRecord
+  default_scope { order(:city, :name) }
   validates :abbr, presence: :true
   validates :city, presence: :true
   validates :name, presence: :true
 
   has_many :players
   has_many :trades
+  has_many :contracts
 
   mount_uploader :logo, LogoUploader
   mount_uploader :wordmark, WordmarkUploader

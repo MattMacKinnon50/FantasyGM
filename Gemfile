@@ -66,6 +66,7 @@ gem "pry"
 gem "carrierwave"
 gem "fog"
 gem "ransack"
+gem "nokogiri"
 
 group :test do
   gem 'coveralls', require: false

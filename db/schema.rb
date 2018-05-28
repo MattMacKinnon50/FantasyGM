@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_143757) do
+ActiveRecord::Schema.define(version: 2018_05_28_014501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contracts", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "team_id"
+    t.integer "length", null: false
+    t.integer "start_year", null: false
+    t.integer "offered_to"
+    t.boolean "highest_bid"
+    t.string "total", null: false
+    t.string "aav", null: false
+    t.string "guaranteed", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "expires"
+    t.index ["player_id"], name: "index_contracts_on_player_id"
+    t.index ["team_id"], name: "index_contracts_on_team_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.bigint "team_id"
@@ -50,6 +67,7 @@ ActiveRecord::Schema.define(version: 2018_05_25_143757) do
     t.string "role", default: "b"
     t.boolean "ps_eligibility", default: false
     t.decimal "height_feet", precision: 4, scale: 3
+    t.boolean "eligbile_for_signing", default: false
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
