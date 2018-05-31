@@ -9,24 +9,35 @@ validates :aav, presence: true
 validates :guaranteed, presence: true
 
   def guaranteed_int
-    result = guaranteed.gsub(/[$,]/, '').to_f
-    result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    result = 0
+    if guaranteed != "-"
+      result = guaranteed.gsub(/[$,]/, '').to_f
+      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    end
+    result
   end
 
   def aav_int
-    result = aav.gsub(/[$,]/, '').to_f
-    result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    result = 0
+    if aav != "-"
+      result = aav.gsub(/[$,]/, '').to_f
+      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    end
+    result
   end
 
   def total_int
-    result = total.gsub(/[$,]/, '').to_f
-    result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    result = 0
+    if total != "-"
+      result = total.gsub(/[$,]/, '').to_f
+      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
+    end
+    result
   end
 
-  def current_year
+  def current_year_index
     league = League.first
-    current_year = (league.league_year - start_year) + 1
-    current_year.to_s
+    current_year = (league.league_year - start_year)
   end
 
   def details_by_year

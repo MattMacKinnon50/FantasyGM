@@ -277,6 +277,7 @@ teams_array.each do |team|
     if player
       Contract.create!(
         player: player,
+        player_name: player.name,
         team: team[1],
         length: length,
         total: total,

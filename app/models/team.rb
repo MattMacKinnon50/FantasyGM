@@ -26,4 +26,18 @@ class Team < ApplicationRecord
     surfaces
   end
 
+  def contract_total
+    contracts = self.contracts
+    contract_total = 0
+    contracts.each do |contract|
+      binding.pry
+      cap_hit = contract.details_by_year[contract.current_year_index][:cap]
+      contract_total += cap_hit
+    end
+    contract_total
+  end
+
+  def cap_total
+    league_cap = League.first.salary_cap
+  end
 end
