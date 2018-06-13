@@ -265,6 +265,9 @@ teams_array.each do |team|
       player = Player.find_by(first_name: contract_hash["first_name"], position: contract_hash["position"], team: team[1])
     end
     length = contract_hash["contract_years"].to_i
+    if length == 0
+      length = 1
+    end
     total = 0
     if contract_hash["contract_total"] != "-"
       total = contract_hash["contract_total"].gsub(/[$,]/, '').to_f
@@ -281,10 +284,12 @@ teams_array.each do |team|
       guaranteed.modulo(1) == 0 ? guaranteed.to_i : sprintf("%.2f", result)
     end
     expires = contract["expires"].to_i
-    start_year = expires - length
-    if start_year == 2019
-      length++
-      start_year = expires - length
+    if expires == 0
+      expires = league.league_year + length - 1
+    end
+    start_year = expires - length + 1
+    if start_year > league.league_year
+      start_year = league.league_year
     end
 
     if player
