@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_172047) do
+ActiveRecord::Schema.define(version: 2018_06_02_003029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,27 @@ ActiveRecord::Schema.define(version: 2018_05_28_172047) do
     t.integer "start_year", null: false
     t.integer "offered_to"
     t.boolean "highest_bid"
-    t.string "total", null: false
-    t.string "aav", null: false
-    t.string "guaranteed", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "expires"
+    t.string "player_name"
+    t.integer "total", null: false
+    t.integer "aav", null: false
+    t.integer "guaranteed", null: false
     t.index ["player_id"], name: "index_contracts_on_player_id"
     t.index ["team_id"], name: "index_contracts_on_team_id"
+  end
+
+  create_table "dead_moneys", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "player_id"
+    t.string "name"
+    t.integer "year"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_dead_moneys_on_player_id"
+    t.index ["team_id"], name: "index_dead_moneys_on_team_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -45,8 +58,8 @@ ActiveRecord::Schema.define(version: 2018_05_28_172047) do
     t.bigint "team_id"
     t.string "nfl_team"
     t.string "number"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.string "position"
     t.string "height"
     t.integer "weight"
@@ -81,9 +94,9 @@ ActiveRecord::Schema.define(version: 2018_05_28_172047) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "abbr"
-    t.string "city"
-    t.string "name"
+    t.string "abbr", null: false
+    t.string "city", null: false
+    t.string "name", null: false
     t.string "conference"
     t.string "division"
     t.string "head_coach"

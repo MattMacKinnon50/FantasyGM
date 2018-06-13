@@ -7,6 +7,7 @@ class Team < ApplicationRecord
   has_many :players
   has_many :trades
   has_many :contracts
+  has_many :dead_moneys
 
   mount_uploader :logo, LogoUploader
   mount_uploader :wordmark, WordmarkUploader
@@ -26,4 +27,17 @@ class Team < ApplicationRecord
     surfaces
   end
 
+  def contract_total
+    contracts = self.contracts
+    contract_total = 0
+    contracts.each do |contract|
+      cap_hit = contract.details_by_year[contract.current_year_index][:cap]
+      contract_total += cap_hit
+    end
+    contract_total
+  end
+
+  def cap_space
+    league_cap = League.first.salary_cap
+  end
 end

@@ -6,6 +6,7 @@ class Player < ApplicationRecord
 
   belongs_to :team
   has_many :contracts
+  has_many :dead_moneys
 
   def name
     [first_name, last_name].join(' ')
