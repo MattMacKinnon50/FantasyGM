@@ -8,33 +8,6 @@ validates :total, presence: true
 validates :aav, presence: true
 validates :guaranteed, presence: true
 
-  def guaranteed_int
-    result = 0
-    if guaranteed != "-"
-      result = guaranteed.gsub(/[$,]/, '').to_f
-      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
-    end
-    result
-  end
-
-  def aav_int
-    result = 0
-    if aav != "-"
-      result = aav.gsub(/[$,]/, '').to_f
-      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
-    end
-    result
-  end
-
-  def total_int
-    result = 0
-    if total != "-"
-      result = total.gsub(/[$,]/, '').to_f
-      result.modulo(1) == 0 ? result.to_i : sprintf("%.2f", result)
-    end
-    result
-  end
-
   def current_year_index
     league = League.first
     current_year = (league.league_year - start_year)
@@ -42,8 +15,8 @@ validates :guaranteed, presence: true
 
   def details_by_year
     contract_breakdown = []
-    guaranteed = self.guaranteed_int
-    total = self.total_int
+    guaranteed = self.guaranteed
+    total = self.total
     base = total - guaranteed
     if length == 1
       contract_breakdown << {year: start_year, base: base, guaranteed: guaranteed, cap: total, dead: total, trade: guaranteed}

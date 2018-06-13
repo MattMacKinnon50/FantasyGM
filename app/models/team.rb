@@ -37,7 +37,17 @@ class Team < ApplicationRecord
     contract_total
   end
 
+  def dead_total
+    dead_moneys = self.dead_moneys
+    dead_total = 0
+    dead_moneys.each do |dead_money|
+      dead_total += dead_money.amount
+    end
+    dead_total
+  end
+
   def cap_space
     league_cap = League.first.salary_cap
+    league_cap - self.contract_total - self.dead_total
   end
 end
