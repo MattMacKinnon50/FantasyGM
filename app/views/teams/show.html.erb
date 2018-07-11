@@ -8,27 +8,37 @@
 <div id="header-spacer"> </div>
 
 <% if @team.id != 33 %>
-  <div class="row">
-    <div class="columns small-6 team-details-container">
-      <h5 class="team-details-title">Coaching Staff</h5>
-      <ul class="team-details">
-        <li>Head Coach: <%= @team.head_coach %></li>
-        <li>Off. Coordinator: <%= @team.offensive_coordinator %></li>
-        <li>Def. Coordinator: <%= @team.defensive_coordinator %></li>
-        <li>Special Teams Coach: <%= @team.special_teams_coach %></li>
-      </ul>
+  <div>
+    <div class="row">
+      <div class="columns small-6 team-details-container">
+        <ul class="team-details">
+          <li class="team-details-title">Coaching Staff</li>
+          <li>Head Coach: <%= @team.head_coach %></li>
+          <li>Off. Coordinator: <%= @team.offensive_coordinator %></li>
+          <li>Def. Coordinator: <%= @team.defensive_coordinator %></li>
+          <li>Special Teams Coach: <%= @team.special_teams_coach %></li>
+        </ul>
+      </div>
+      <div class="columns small-6 team-details-container">
+        <ul class="team-details">
+          <li class="team-details-title">Stadium</li>
+          <li><%= @team.stadium_name %></li>
+          <li><%= @team.stadium_city %>, <%= @team.stadium_state %></li>
+          <li>Capacity: <%= @team.stadium_capacity %></li>
+          <li>Field Type: <%= @team.stadium_playing_surface %></li>
+        </ul>
+      </div>
     </div>
-    <div class="columns small-5 team-details-container">
-      <h5 class="team-details-title">Stadium</h5>
-      <ul class="team-details">
-        <li><%= @team.stadium_name %></li>
-        <li><%= @team.stadium_city %>, <%= @team.stadium_state %></li>
-        <li>Capacity: <%= @team.stadium_capacity %></li>
-        <li>Field Type: <%= @team.stadium_playing_surface %></li>
-      </ul>
+    <hr/>
+    <div class="row">
+      <div class="columns small-3"><h5>Salary Cap: <%= number_to_currency(@cap) %></h5></div>
+      <div class="columns small-3"><h5>Under Contract: <%= number_to_currency(@under_contract) %></h5></div>
+      <div class="columns small-3"><h5>Dead Money: <%=  number_to_currency(@dead_money) %></h5></div>
+      <div class="columns small-3"><h5>Cap Space: <%= number_to_currency(@cap_space) %> </h5></div>
     </div>
   </div>
   <% if @current_user && @current_user.team_id == @team.id %>
+    <hr/>
     <span class="transaction-button-container">
       <%= button_to 'Add Player', '/teams/free_agents', method: :get, class: "button transaction-button" %>
       <%= button_to 'View Trades', trades_path, method: :get, class: "button transaction-button middle" %>

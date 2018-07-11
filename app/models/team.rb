@@ -28,10 +28,12 @@ class Team < ApplicationRecord
   end
 
   def contract_total
+    league = League.first
+    year = league.league_year
     contracts = self.contracts
     contract_total = 0
     contracts.each do |contract|
-      cap_hit = contract.details_by_year[contract.current_year_index][:cap]
+      cap_hit = contract.details_by_year[contract.year_index(year)][:cap]
       contract_total += cap_hit
     end
     contract_total
