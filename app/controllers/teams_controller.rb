@@ -13,6 +13,11 @@ class TeamsController < ApplicationController
     end
     playerList = @team.players
     @players = playerList.order(:last_name)
+    league = League.first
+    @cap = league.salary_cap
+    @under_contract = @team.contract_total
+    @dead_money = @team.dead_total
+    @cap_space = @team.cap_space
   end
 
   def edit
