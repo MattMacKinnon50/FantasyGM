@@ -229,6 +229,7 @@ class Roster extends Component {
               lastName={player["last_name"]}
               byeWeek={player["bye_week"]}
               role={"starter"}
+              currentCap={player["current_cap"]}
               edit={this.state.edit}
               psEligible={player["ps_eligibility"]}
             />
@@ -250,6 +251,7 @@ class Roster extends Component {
                 lastName={null}
                 byeWeek={null}
                 role={"starter"}
+                currentSalary={null}
                 edit={this.state.edit}
               />
             )
@@ -297,6 +299,7 @@ class Roster extends Component {
             firstName={player["first_name"]}
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
+            currentCap={player["current_cap"]}
             role={"b"}
             edit={this.state.edit}
             psEligible={player["ps_eligibility"]}
@@ -327,6 +330,7 @@ class Roster extends Component {
             firstName={player["first_name"]}
             lastName={player["last_name"]}
             byeWeek={player["bye_week"]}
+            currentCap={player["current_cap"]}
             role={"ps"}
             edit={this.state.edit}
             psEligible={player["ps_eligibility"]}

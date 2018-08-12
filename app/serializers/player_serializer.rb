@@ -1,5 +1,5 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :team_id, :nfl_team, :number, :first_name, :last_name, :name, :position, :bye_week, :role, :primary_color, :secondary_color, :ps_eligibility, :contract, :current_salary
+  attributes :id, :team_id, :nfl_team, :number, :first_name, :last_name, :name, :position, :bye_week, :role, :primary_color, :secondary_color, :ps_eligibility, :contract, :current_salary, :current_cap
 
   def name
     [object.first_name, object.last_name].join(' ')
@@ -15,6 +15,15 @@ class PlayerSerializer < ActiveModel::Serializer
 
   def contract
     object.contracts[0]
+  end
+
+  def current_cap
+    league = League.first
+    year = league.league_year
+    contract = object.contracts[0]
+    current_year = contract.details_by_year[contract.year_index(year)]
+    current_cap = current_year[:cap].to_i.to_s.gsub(/\d(?=(...)+$)/, '\0,')
+    salary = "$" + current_cap
   end
 
   def current_salary
